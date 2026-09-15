@@ -41,109 +41,83 @@ export default function Hero({ onOpenWizard }) {
   };
 
   return (
-    <section className="relative min-h-[92vh] bg-slate-50 dark:bg-onyx-950 text-neutral-900 dark:text-white overflow-hidden flex flex-col justify-between blueprint-grid transition-colors duration-200">
+    <section className="relative min-h-[90vh] apple-canvas text-neutral-900 dark:text-white overflow-hidden flex flex-col justify-between transition-colors duration-200">
       
-      {/* Subtle radial lighting backdrop */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-sky-200/20 dark:bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-amber-100/30 dark:bg-neutral-800/[0.04] rounded-full blur-3xl pointer-events-none" />
+      {/* Giant Translucent Watermark Typography across canvas */}
+      <div className="absolute top-1/2 -translate-y-1/2 -left-10 lg:left-0 select-none pointer-events-none text-[22vw] lg:text-[18vw] font-black text-black/[0.04] dark:text-white/[0.035] tracking-tighter leading-none whitespace-nowrap z-0 font-heading">
+        STEVE'S
+      </div>
+
+      {/* Subtle radial lighting glows */}
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/40 dark:bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-neutral-200/40 dark:bg-neutral-800/[0.04] rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Split Grid Hero Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 lg:pt-20 pb-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-8 sm:pt-14 lg:pt-16 pb-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center relative z-10">
         
-        {/* LEFT COLUMN: Bold Typography & Dual Pill CTAs */}
-        <div className="lg:col-span-6 space-y-6 sm:space-y-7 text-left">
+        {/* LEFT COLUMN: Stacked Bold Typography, Quote & Neumorphic Pill CTA */}
+        <div className="lg:col-span-5 space-y-6 sm:space-y-8 text-left">
           
-          {/* Trust Badges */}
-          <div className="flex flex-wrap items-center gap-2.5">
-            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white dark:bg-white/5 border border-neutral-200/90 dark:border-white/10 text-neutral-700 dark:text-neutral-300 text-xs sm:text-sm font-medium tracking-wide shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Serving Denison, Sherman & Lake Texoma, TX</span>
-            </div>
+          {/* Location Badge */}
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/15 text-neutral-600 dark:text-neutral-300 text-xs font-medium tracking-wide shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Denison & Lake Texoma, TX</span>
+          </div>
 
-            <a
-              href="#gallery"
-              className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-white/10 hover:bg-neutral-100 dark:hover:bg-white/20 border border-neutral-200/90 dark:border-white/20 text-neutral-700 dark:text-neutral-200 text-xs font-semibold transition shadow-xs"
+          {/* Stacked Display Title matching template */}
+          <h1 className="text-5xl sm:text-7xl lg:text-[84px] font-black font-heading tracking-tighter text-neutral-950 dark:text-white leading-[0.93]">
+            Steve's<br />
+            Handyman<br />
+            Co.
+          </h1>
+
+          {/* Editorial Quote snippet matching template */}
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-sm font-normal leading-relaxed">
+            "Steve's Handyman is the premier residential craftsman across Grayson County, beloved for effortless home repairs, incredible finish quality, and iconic precision."
+          </p>
+
+          {/* Pill Action Button */}
+          <div className="flex items-center gap-4 pt-1">
+            <button
+              onClick={() => onOpenWizard()}
+              className="btn-apple-pill"
             >
-              <span className="flex -space-x-1.5 overflow-hidden">
-                <img className="inline-block h-4 w-4 rounded-full ring-1 ring-white object-cover" src="/images/project-cabinets-laser.jpg" alt="Cabinet" />
-                <img className="inline-block h-4 w-4 rounded-full ring-1 ring-white object-cover" src="/images/project-window-install.jpg" alt="Window" />
-                <img className="inline-block h-4 w-4 rounded-full ring-1 ring-white object-cover" src="/images/project-drywall-hallway.jpg" alt="Drywall" />
-              </span>
-              <span>8 Job Photos →</span>
+              Read More
+            </button>
+            <a
+              href="#services"
+              className="text-xs font-semibold text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors"
+            >
+              Explore Services →
             </a>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black font-heading tracking-tight text-neutral-950 dark:text-white leading-[1.08]">
-            Crafting Reliable <br className="hidden sm:inline" />
-            Home Masterpieces
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-base sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-xl font-normal leading-relaxed">
-            Harnessing 25+ years of multi-trade craftsmanship and honest Texas work ethic to transform everyday home repairs into flawless, long-lasting precision.
-          </p>
-
-          {/* Dual Pill CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-4 pt-1">
-            
-            {/* Pill 1: High-contrast primary button */}
-            <button
-              onClick={scrollToServices}
-              className="inline-flex items-center space-x-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all active:scale-95 shadow-xl group cursor-pointer"
-            >
-              <span>SEE SERVICES</span>
-              <div className="w-5 h-5 rounded-full bg-white/20 dark:bg-black/20 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                <svg className="w-3 h-3 text-white dark:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
-              </div>
-            </button>
-
-            {/* Pill 2: Secondary pill button with tactile border */}
-            <button
-              onClick={() => onOpenWizard()}
-              className="inline-flex items-center space-x-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-neutral-900 dark:text-white font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-md hover:shadow-lg border-2 border-neutral-300/80 dark:border-neutral-700 active:scale-95 group cursor-pointer"
-            >
-              <span>GET IN TOUCH</span>
-              <div className="w-5 h-5 rounded-full bg-neutral-900 dark:bg-white flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                <svg className="w-3 h-3 text-white dark:text-neutral-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
-              </div>
-            </button>
-
-          </div>
-
-          {/* Social Proof Stats */}
-          <div className="pt-4 flex items-center gap-6 text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm border-t border-neutral-200/90 dark:border-neutral-800/80">
+          {/* Key Metrics */}
+          <div className="pt-4 flex items-center gap-6 text-neutral-500 dark:text-neutral-400 text-xs border-t border-black/[0.06] dark:border-white/[0.08]">
             <div>
-              <span className="font-heading font-black text-neutral-950 dark:text-white text-lg sm:text-xl block">2,400+</span>
-              <span className="text-neutral-500 text-xs">Projects Solved</span>
+              <span className="font-heading font-black text-neutral-900 dark:text-white text-base sm:text-lg block">25+ Yrs</span>
+              <span className="text-[11px] text-neutral-500">Master Experience</span>
             </div>
-            <div className="w-[1px] h-8 bg-neutral-300 dark:bg-neutral-800" />
+            <div className="w-[1px] h-7 bg-black/[0.08] dark:bg-white/[0.1]" />
             <div>
-              <span className="font-heading font-black text-neutral-950 dark:text-white text-lg sm:text-xl block">5.0 ★</span>
-              <span className="text-neutral-500 text-xs">Yelp & Google Rating</span>
+              <span className="font-heading font-black text-neutral-900 dark:text-white text-base sm:text-lg block">5.0 ★</span>
+              <span className="text-[11px] text-neutral-500">Top-Rated on Yelp</span>
             </div>
-            <div className="w-[1px] h-8 bg-neutral-300 dark:bg-neutral-800" />
+            <div className="w-[1px] h-7 bg-black/[0.08] dark:bg-white/[0.1]" />
             <div>
-              <span className="font-heading font-black text-emerald-600 dark:text-emerald-400 text-lg sm:text-xl block">1-Year</span>
-              <span className="text-neutral-500 text-xs">Warranty on Labor</span>
+              <span className="font-heading font-black text-emerald-600 dark:text-emerald-400 text-base sm:text-lg block">1-Year</span>
+              <span className="text-[11px] text-neutral-500">Full Labor Warranty</span>
             </div>
           </div>
 
         </div>
 
-        {/* RIGHT COLUMN: EMBEDDED HERO VIDEO & TACTILE TRADE BADGES */}
-        <div className="lg:col-span-6 flex flex-col items-center space-y-6">
+        {/* RIGHT COLUMN: Photorealistic Video Showcase in Apple Hardware Presentation */}
+        <div className="lg:col-span-7 flex flex-col items-center">
           
-          {/* Main Cinematic Video Player Container */}
-          <div className="relative w-full max-w-lg lg:max-w-none rounded-3xl p-2 sm:p-2.5 bg-white dark:bg-neutral-900 border-2 border-neutral-200/90 dark:border-neutral-800 card-thick shadow-2xl transition-all duration-300 group">
+          <div className="relative w-full max-w-2xl rounded-[32px] p-2 sm:p-2.5 bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-white dark:border-white/10 apple-floating-shadow transition-all duration-300 group">
             
-            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-neutral-950">
+            <div className="relative w-full h-72 sm:h-96 md:h-[420px] rounded-[24px] overflow-hidden bg-neutral-950">
               {/* HTML5 Video Player */}
               <video
                 ref={videoRef}
@@ -157,10 +131,10 @@ export default function Hero({ onOpenWizard }) {
                 onPause={() => setIsPlaying(false)}
               />
 
-              {/* Top Glass Badge & Controls */}
-              <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-auto z-20">
-                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-white text-xs font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              {/* Top Glass Badge & Minimal Controls */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-20">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span>Master Craftsmanship in Motion</span>
                 </div>
 
@@ -168,7 +142,7 @@ export default function Hero({ onOpenWizard }) {
                   {/* Mute/Unmute */}
                   <button
                     onClick={toggleMute}
-                    className="p-2 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/20 transition cursor-pointer"
+                    className="p-2 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white border border-white/20 transition cursor-pointer"
                     aria-label={isMuted ? "Unmute video" : "Mute video"}
                     title={isMuted ? "Unmute" : "Mute"}
                   >
@@ -189,7 +163,7 @@ export default function Hero({ onOpenWizard }) {
                   {/* Play/Pause */}
                   <button
                     onClick={togglePlay}
-                    className="p-2 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/20 transition cursor-pointer"
+                    className="p-2 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white border border-white/20 transition cursor-pointer"
                     aria-label={isPlaying ? "Pause video" : "Play video"}
                     title={isPlaying ? "Pause" : "Play"}
                   >
@@ -208,28 +182,29 @@ export default function Hero({ onOpenWizard }) {
               </div>
 
               {/* Bottom Glass Caption & Quick Action */}
-              <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 text-white z-20">
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3.5 rounded-2xl bg-black/55 backdrop-blur-md border border-white/15 text-white z-20">
                 <div>
-                  <span className="text-[11px] uppercase tracking-wider text-neutral-400 block font-semibold">
-                    Multi-Trade Standard
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-400 block font-semibold">
+                    Multi-Trade Discipline
                   </span>
-                  <span className="text-xs sm:text-sm font-heading font-black text-white">
-                    Laser Precision Woodworking & Framing
+                  <span className="text-xs sm:text-sm font-heading font-extrabold text-white">
+                    Laser-Leveled Cabinetry & Structural Framing
                   </span>
                 </div>
                 <button
                   onClick={() => onOpenWizard('Carpentry', 'Custom Trim & Built-Ins')}
-                  className="px-3 py-1.5 rounded-lg bg-white text-black font-heading font-bold text-[11px] tracking-wide uppercase hover:bg-neutral-200 transition active:scale-95 cursor-pointer shrink-0"
+                  className="px-3.5 py-1.5 rounded-full bg-white text-black font-heading font-bold text-xs tracking-wide uppercase hover:bg-neutral-200 transition active:scale-95 cursor-pointer shrink-0"
                 >
-                  Quote This ↗
+                  Quote ↗
                 </button>
               </div>
 
-              {/* Dark Gradient Overlay for text contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none" />
             </div>
 
           </div>
+            
+
 
           {/* Interactive Trade Badges Strip */}
           <div className="w-full">

@@ -3,8 +3,8 @@ import { BUSINESS_INFO } from '../../data/businessData';
 
 export default function AboutSection({ onOpenWizard }) {
   return (
-    <section id="about" className="py-24 sm:py-32 bg-white dark:bg-onyx-950 text-neutral-900 dark:text-white relative border-t border-neutral-200/90 dark:border-neutral-900 transition-colors duration-200" aria-labelledby="about-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-24 sm:py-32 apple-canvas text-neutral-900 dark:text-white relative border-t border-black/[0.05] dark:border-white/[0.06] transition-colors duration-200" aria-labelledby="about-heading">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Visual Story & Real Job Site Photos */}
@@ -12,22 +12,22 @@ export default function AboutSection({ onOpenWizard }) {
             
             {/* Real Project Photo Stack */}
             <div className="relative">
-              <div className="card-thick rounded-3xl overflow-hidden border-2 border-neutral-200/90 dark:border-neutral-800 bg-neutral-900 shadow-xl group">
+              <div className="rounded-[32px] overflow-hidden border border-white dark:border-white/10 bg-neutral-900 apple-floating-shadow group p-1 bg-white/70 dark:bg-white/5 backdrop-blur-xl">
                 <img
                   src="/images/project-cabinets-laser.jpg"
                   alt="Steve Miller laser leveling custom kitchen cabinets in Denison TX"
                   loading="lazy"
-                  className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-80 sm:h-96 object-cover rounded-[26px] group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute inset-1 rounded-[26px] bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
                 
                 {/* Overlay Badge */}
                 <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-xs text-white">
-                  <span className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 font-bold">
+                  <span className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 font-bold">
                     📍 On Site: Denison, TX
                   </span>
                   <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold">
-                    Laser-Leveled Tolerance
+                    Laser Tolerance
                   </span>
                 </div>
               </div>
@@ -115,13 +115,9 @@ export default function AboutSection({ onOpenWizard }) {
             <div className="pt-2">
               <button
                 onClick={() => onOpenWizard()}
-                className="inline-flex items-center space-x-3 px-8 py-4 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-heading font-bold text-xs sm:text-sm uppercase tracking-wider transition shadow-md active:scale-95 cursor-pointer"
+                className="btn-apple-pill py-3.5 px-8 font-bold text-xs uppercase tracking-wider cursor-pointer"
               >
-                <span>CONSULT WITH STEVE</span>
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
+                <span>Consult With Steve →</span>
               </button>
             </div>
 

@@ -50,74 +50,73 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
       <header 
         className={`sticky top-0 z-40 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/95 dark:bg-onyx-950/90 backdrop-blur-xl border-b border-neutral-200/90 dark:border-neutral-800/80 shadow-md py-3' 
-            : 'bg-white/80 dark:bg-onyx-950/60 backdrop-blur-md border-b border-neutral-200/60 dark:border-neutral-800/40 py-4 sm:py-5'
+            ? 'bg-[#eaebed]/90 dark:bg-[#0b0d10]/90 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-sm py-3.5' 
+            : 'bg-transparent py-5 sm:py-6'
         }`}
         role="banner"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
           
-          {/* LEFT: Pill MENU button */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setDrawerOpen(true)}
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white/10 dark:hover:bg-white/20 dark:text-white font-semibold text-xs sm:text-sm tracking-wider uppercase border border-neutral-900 dark:border-white/20 transition-all active:scale-95 shadow-md cursor-pointer"
-              aria-label="Open Navigation Menu"
-            >
-              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-              <span>MENU</span>
-            </button>
-
-            {/* Status indicator for business open/closed */}
-            <div className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400 shadow-xs">
-              <span className={`w-2 h-2 rounded-full ${openStatus ? 'bg-emerald-500 animate-pulse' : 'bg-neutral-400'}`} />
-              <span className="font-medium">{openStatus ? 'On Duty Today' : 'After Hours • Estimates Open'}</span>
-            </div>
-          </div>
-
-          {/* CENTER: 3D Isometric Monogram Dice ("S" & "H" for Steve's Handyman) */}
+          {/* LEFT: Minimalist Apple-style Brand Mark */}
           <button 
             onClick={(e) => handleNavClick(e, '#')}
-            className="flex items-center gap-2 group cursor-pointer"
+            className="flex items-center gap-3 group cursor-pointer text-left"
             aria-label="Steve's Handyman Home"
           >
-            {/* Cube 1: S */}
-            <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-neutral-200 via-neutral-500 to-neutral-800 dark:from-neutral-300 dark:via-neutral-700 dark:to-neutral-900 p-[1.5px] shadow-lg transform -rotate-6 transition-transform group-hover:rotate-0 duration-300">
-              <div className="w-full h-full bg-gradient-to-b from-neutral-900 to-black rounded-[7px] flex items-center justify-center border border-white/25">
-                <span className="font-heading font-black text-sm sm:text-base text-white tracking-tighter drop-shadow-md">
-                  S
-                </span>
-              </div>
+            <div className="w-8 h-8 rounded-full bg-neutral-950 dark:bg-white flex items-center justify-center text-white dark:text-neutral-950 font-black text-xs shadow-xs transition-transform duration-300 group-hover:scale-105">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
             </div>
-
-            {/* Cube 2: H */}
-            <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-neutral-300 via-neutral-600 to-neutral-900 dark:from-neutral-400 dark:via-neutral-600 dark:to-neutral-950 p-[1.5px] shadow-lg transform rotate-6 transition-transform group-hover:rotate-0 duration-300">
-              <div className="w-full h-full bg-gradient-to-b from-neutral-900 to-black rounded-[7px] flex items-center justify-center border border-white/25">
-                <span className="font-heading font-black text-sm sm:text-base text-white tracking-tighter drop-shadow-md">
-                  H
-                </span>
-              </div>
-            </div>
-
-            <div className="hidden xl:flex flex-col text-left ml-2">
-              <span className="font-heading font-black text-sm text-neutral-950 dark:text-white tracking-tight leading-none">
-                STEVE'S
+            <div className="flex flex-col">
+              <span className="font-heading font-extrabold text-sm sm:text-base text-neutral-900 dark:text-white tracking-tight leading-none">
+                Steve's
               </span>
-              <span className="text-[10px] font-bold tracking-widest text-neutral-500 dark:text-neutral-400 uppercase leading-none mt-1">
-                HANDYMAN LLC
+              <span className="text-[10px] font-medium tracking-wider text-neutral-500 dark:text-neutral-400 uppercase leading-none mt-0.5">
+                Handyman Co.
               </span>
             </div>
           </button>
 
-          {/* RIGHT: Pill GET IN TOUCH / QUOTE button & Dark Toggle */}
+          {/* CENTER/RIGHT: Minimal Text Nav Links from Template */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10 text-xs sm:text-[13px] font-medium text-neutral-600 dark:text-neutral-300 tracking-wide">
+            <button
+              onClick={(e) => handleNavClick(e, '#services')}
+              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+            >
+              Services
+            </button>
+            <button
+              onClick={(e) => handleNavClick(e, '#craft')}
+              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+            >
+              Overview
+            </button>
+            <button
+              onClick={(e) => handleNavClick(e, '#gallery')}
+              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+            >
+              Work
+            </button>
+            <button
+              onClick={(e) => handleNavClick(e, '#reviews')}
+              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+            >
+              Reviews
+            </button>
+            <button
+              onClick={(e) => handleNavClick(e, '#location')}
+              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+            >
+              Contacts
+            </button>
+          </nav>
+
+          {/* RIGHT: Theme Toggle & Apple Pill CTA */}
           <div className="flex items-center gap-3">
             <button
               onClick={onToggleDarkMode}
-              className="p-2.5 rounded-full bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 text-neutral-700 dark:text-neutral-300 border border-neutral-300/80 dark:border-white/15 transition-all active:scale-95 cursor-pointer shadow-xs"
+              className="w-9 h-9 rounded-full flex items-center justify-center bg-white/70 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 text-neutral-700 dark:text-neutral-300 border border-black/5 dark:border-white/15 transition-all shadow-xs cursor-pointer active:scale-95"
               aria-label="Toggle theme"
               title="Toggle theme"
             >
@@ -142,16 +141,21 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
 
             <button
               onClick={() => onOpenWizard()}
-              className="inline-flex items-center space-x-2 px-5 sm:px-6 py-2.5 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-heading font-black text-xs sm:text-sm tracking-wider uppercase transition-all shadow-md active:scale-95 cursor-pointer"
-              aria-label="Get in touch for home repair quote"
+              className="btn-apple-pill hidden sm:inline-flex text-xs py-2.5 px-6 shadow-xs cursor-pointer"
             >
-              <span>GET IN TOUCH</span>
-              <div className="w-4 h-4 rounded-full bg-white/20 dark:bg-black text-white flex items-center justify-center">
-                <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7" />
-                  <polyline points="7 7 17 7 17 17" />
-                </svg>
-              </div>
+              <span>Get Estimate</span>
+            </button>
+
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className="md:hidden p-2 rounded-full bg-white/70 dark:bg-white/10 text-neutral-800 dark:text-white border border-black/5 dark:border-white/10 cursor-pointer"
+              aria-label="Open menu"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
             </button>
           </div>
 

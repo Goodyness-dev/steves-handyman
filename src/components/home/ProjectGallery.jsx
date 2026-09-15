@@ -12,20 +12,20 @@ export default function ProjectGallery({ onOpenWizard }) {
     : PROJECTS_GALLERY.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="gallery" className="py-24 sm:py-32 bg-slate-50 dark:bg-onyx-950 text-neutral-900 dark:text-white relative border-t border-neutral-200/90 dark:border-neutral-900 blueprint-grid transition-colors duration-200" aria-labelledby="gallery-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="gallery" className="py-24 sm:py-32 apple-canvas text-neutral-900 dark:text-white relative border-t border-black/[0.05] dark:border-white/[0.06] transition-colors duration-200" aria-labelledby="gallery-heading">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl space-y-4">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 text-xs font-semibold uppercase tracking-wider">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/15 text-neutral-600 dark:text-neutral-300 text-xs font-semibold uppercase tracking-wider shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>Real Local Job Site Photography</span>
             </div>
-            <h2 id="gallery-heading" className="text-3xl sm:text-5xl font-black font-heading text-neutral-950 dark:text-white tracking-tight">
+            <h2 id="gallery-heading" className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-neutral-950 dark:text-white tracking-tighter leading-tight">
               Recent Projects Across Denison & Texoma
             </h2>
-            <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
               Real work from real Grayson County homes. From laser-leveled kitchen cabinetry to full exterior window replacements and structural drywall repairs.
             </p>
           </div>
@@ -38,8 +38,8 @@ export default function ProjectGallery({ onOpenWizard }) {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-neutral-950 text-white dark:bg-white dark:text-black shadow-md scale-105'
-                    : 'bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-400 border border-neutral-300 dark:border-neutral-800 hover:border-neutral-400'
+                    ? 'btn-apple-pill !bg-neutral-950 !text-white dark:!bg-white dark:!text-neutral-950 shadow-md scale-105'
+                    : 'btn-apple-pill py-2 px-4 text-xs opacity-75 hover:opacity-100'
                 }`}
               >
                 {cat}
@@ -48,13 +48,13 @@ export default function ProjectGallery({ onOpenWizard }) {
           </div>
         </div>
 
-        {/* Thick & Alive Image Gallery Grid */}
+        {/* Apple Image Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <article
               key={project.id}
               onClick={() => setActiveImageModal(project)}
-              className="card-thick card-thick-hover group rounded-3xl bg-white dark:bg-gradient-to-b dark:from-neutral-900 dark:to-onyx-900 border-2 border-neutral-200/90 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 overflow-hidden flex flex-col justify-between cursor-pointer shadow-sm hover:shadow-xl transition-all"
+              className="group rounded-[32px] bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-white dark:border-white/10 apple-floating-shadow hover:scale-[1.02] transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer"
             >
               {/* Image Container with Smooth Hover Scale */}
               <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-neutral-900">

@@ -19,18 +19,18 @@ export default function LocationHoursSection({ onOpenWizard }) {
   ];
 
   return (
-    <section id="location" className="py-24 sm:py-32 bg-white dark:bg-onyx-950 text-neutral-900 dark:text-white relative border-t border-neutral-200/90 dark:border-neutral-900 blueprint-grid transition-colors duration-200" aria-labelledby="location-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="location" className="py-24 sm:py-32 apple-canvas text-neutral-900 dark:text-white relative border-t border-black/[0.05] dark:border-white/[0.06] transition-colors duration-200" aria-labelledby="location-heading">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/15 text-neutral-600 dark:text-neutral-300 text-xs font-semibold uppercase tracking-wider shadow-xs">
             <span>Service Territory & Availability</span>
           </div>
-          <h2 id="location-heading" className="text-3xl sm:text-5xl font-black font-heading text-neutral-950 dark:text-white tracking-tight">
+          <h2 id="location-heading" className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-neutral-950 dark:text-white tracking-tighter leading-tight">
             Serving Denison & The Texoma Region
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg leading-relaxed">
+          <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
             We bring our mobile service van right to your driveway equipped with professional trade tooling, hardware inventory, and dust containment gear.
           </p>
         </div>
@@ -38,7 +38,7 @@ export default function LocationHoursSection({ onOpenWizard }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Hours Card */}
-          <div className="lg:col-span-5 card-thick rounded-3xl p-8 sm:p-10 bg-slate-50 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-onyx-900 border-2 border-neutral-200/90 dark:border-neutral-800 flex flex-col justify-between shadow-sm">
+          <div className="lg:col-span-5 rounded-[32px] p-8 sm:p-10 bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-white dark:border-white/10 apple-floating-shadow flex flex-col justify-between">
             <div>
               {/* Open/Closed Badge */}
               <div className="flex items-center justify-between p-4 rounded-2xl bg-white dark:bg-black/50 border border-neutral-200 dark:border-neutral-800 mb-6 shadow-xs">
@@ -104,7 +104,7 @@ export default function LocationHoursSection({ onOpenWizard }) {
           </div>
 
           {/* Service Area Grid Card */}
-          <div className="lg:col-span-7 card-thick rounded-3xl p-8 sm:p-10 bg-slate-50 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-onyx-900 border-2 border-neutral-200/90 dark:border-neutral-800 flex flex-col justify-between shadow-sm">
+          <div className="lg:col-span-7 rounded-[32px] p-8 sm:p-10 bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-white dark:border-white/10 apple-floating-shadow flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-6">
                 <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">
@@ -142,9 +142,9 @@ export default function LocationHoursSection({ onOpenWizard }) {
               </span>
               <button
                 onClick={() => onOpenWizard()}
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-heading font-black text-xs uppercase tracking-wider transition shadow-md active:scale-95 cursor-pointer"
+                className="w-full sm:w-auto btn-apple-pill py-3 px-6 text-xs uppercase tracking-wider cursor-pointer"
               >
-                CHECK MY ADDRESS ↗
+                Check My Address →
               </button>
             </div>
 

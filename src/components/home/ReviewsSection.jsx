@@ -3,33 +3,33 @@ import { BUSINESS_INFO } from '../../data/businessData';
 
 export default function ReviewsSection({ onOpenWizard }) {
   return (
-    <section id="reviews" className="py-24 sm:py-32 bg-slate-50 dark:bg-onyx-950 text-neutral-900 dark:text-white relative border-t border-neutral-200/90 dark:border-neutral-900 transition-colors duration-200" aria-labelledby="reviews-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="reviews" className="py-24 sm:py-32 apple-canvas text-neutral-900 dark:text-white relative border-t border-black/[0.05] dark:border-white/[0.06] transition-colors duration-200" aria-labelledby="reviews-heading">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/15 text-neutral-600 dark:text-neutral-300 text-xs font-semibold uppercase tracking-wider shadow-xs">
             <span>Verified Customer Feedback</span>
           </div>
-          <h2 id="reviews-heading" className="text-3xl sm:text-5xl font-black font-heading text-neutral-950 dark:text-white tracking-tight">
+          <h2 id="reviews-heading" className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-neutral-950 dark:text-white tracking-tighter leading-tight">
             5.0 Stars Across Denison & Grayson County
           </h2>
           <div className="flex items-center justify-center space-x-2 text-amber-500 text-lg">
             {'★★★★★'.split('').map((s, i) => (
               <span key={i}>{s}</span>
             ))}
-            <span className="text-sm text-neutral-600 dark:text-neutral-400 font-semibold ml-2">
+            <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-semibold ml-2">
               (Yelp & Google Verified Ratings)
             </span>
           </div>
         </div>
 
-        {/* Thick & Alive Review Cards Grid */}
+        {/* Apple Tactile Review Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {BUSINESS_INFO.reviews.map((rev, idx) => (
             <article
               key={idx}
-              className="card-thick card-thick-hover rounded-3xl p-8 sm:p-10 bg-white dark:bg-gradient-to-br dark:from-neutral-900 dark:to-onyx-900 border-2 border-neutral-200/90 dark:border-neutral-800 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all"
+              className="rounded-[32px] p-8 sm:p-10 bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-white dark:border-white/10 apple-floating-shadow flex flex-col justify-between hover:scale-[1.01] transition-all"
             >
               <div>
                 {/* Header: Stars & Source */}

@@ -23,13 +23,13 @@ export default function Footer({ onOpenWizard, onNavigate }) {
   };
 
   return (
-    <footer className="bg-white dark:bg-onyx-950 text-neutral-600 dark:text-neutral-400 text-sm pb-16 sm:pb-0 border-t border-neutral-200/90 dark:border-neutral-900 transition-colors duration-200" role="contentinfo">
+    <footer className="apple-canvas text-neutral-600 dark:text-neutral-400 text-sm pb-16 sm:pb-0 border-t border-black/[0.05] dark:border-white/[0.06] transition-colors duration-200" role="contentinfo">
       
       {/* High-Impact Pre-footer Bar */}
-      <div className="bg-slate-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8 border-b border-neutral-200 dark:border-neutral-800">
+      <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl py-12 px-6 sm:px-8 lg:px-12 border-b border-black/[0.05] dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left space-y-1">
-            <h3 className="text-2xl sm:text-4xl font-black font-heading text-neutral-950 dark:text-white tracking-tight">
+            <h3 className="text-2xl sm:text-4xl font-black font-heading text-neutral-950 dark:text-white tracking-tighter">
               Ready to fix, build, or refresh your home?
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base">
@@ -39,13 +39,13 @@ export default function Footer({ onOpenWizard, onNavigate }) {
           <div className="flex flex-wrap items-center justify-center gap-4 w-full md:w-auto shrink-0">
             <button
               onClick={() => onOpenWizard()}
-              className="px-8 py-4 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-heading font-black text-xs sm:text-sm tracking-wider uppercase transition shadow-md active:scale-95 cursor-pointer"
+              className="btn-apple-pill py-3.5 px-8 font-bold text-xs uppercase tracking-wider shadow-md cursor-pointer"
             >
-              REQUEST A QUOTE ↗
+              Request A Quote →
             </button>
             <a
               href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}
-              className="px-7 py-4 rounded-full bg-white hover:bg-neutral-100 dark:bg-white/10 dark:hover:bg-white/20 text-neutral-900 dark:text-white font-heading font-bold text-xs sm:text-sm tracking-wider uppercase border border-neutral-300 dark:border-white/20 transition flex items-center gap-2.5 active:scale-95 shadow-xs"
+              className="btn-apple-pill py-3.5 px-6 font-bold text-xs tracking-wider cursor-pointer flex items-center gap-2"
             >
               <span>{BUSINESS_INFO.phone}</span>
             </a>
