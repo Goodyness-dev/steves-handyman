@@ -41,14 +41,14 @@ export default function App() {
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [adminUser, setAdminUser] = useState(null);
 
-  // Midnight Dark Mode state (default to true for sleek dark aesthetic)
+  // Light theme default (user requested light-themed platform)
   const [darkMode, setDarkMode] = useState(() => {
     try {
       const saved = localStorage.getItem('steves_handyman_theme');
-      if (saved) return saved === 'dark';
-      return true; // Default to obsidian dark mode
+      if (saved !== null) return saved === 'dark';
+      return false; // Default to elegant light theme
     } catch {
-      return true;
+      return false;
     }
   });
 
@@ -213,18 +213,18 @@ export default function App() {
         initialService={wizardService}
       />
 
-      {/* Sticky Mobile Bottom Bar (Midnight Black supported) */}
-      <div className={`fixed bottom-0 left-0 right-0 z-30 sm:hidden ${darkMode ? 'bg-black/95 border-neutral-800' : 'bg-white/95 border-gray-200'} backdrop-blur-md border-t p-2.5 flex items-center gap-2.5 shadow-lg`}>
+      {/* Sticky Mobile Bottom Bar */}
+      <div className={`fixed bottom-0 left-0 right-0 z-30 sm:hidden ${darkMode ? 'bg-black/95 border-neutral-800' : 'bg-white/95 border-neutral-200'} backdrop-blur-md border-t p-2.5 flex items-center gap-2.5 shadow-lg`}>
         <a
           href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}
-          className={`flex-1 py-3 px-3.5 rounded-xl ${darkMode ? 'bg-[#111111] text-white border-neutral-800' : 'bg-gray-100 text-gray-900 border-gray-200'} font-bold text-sm flex items-center justify-center space-x-2 border active:scale-95 transition`}
+          className={`flex-1 py-3 px-3.5 rounded-xl ${darkMode ? 'bg-[#111111] text-white border-neutral-800' : 'bg-neutral-100 text-neutral-900 border-neutral-200'} font-bold text-sm flex items-center justify-center space-x-2 border active:scale-95 transition cursor-pointer`}
         >
           <PhoneIcon className="w-4 h-4 text-emerald-500" />
           <span>Call Steve</span>
         </a>
         <button
           onClick={() => handleOpenWizard()}
-          className="flex-1 py-3 px-3.5 rounded-xl bg-white text-black hover:bg-neutral-200 font-bold text-sm flex items-center justify-center space-x-2 shadow-sm active:scale-95 transition"
+          className={`flex-1 py-3 px-3.5 rounded-xl ${darkMode ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-950 text-white hover:bg-neutral-800'} font-bold text-sm flex items-center justify-center space-x-2 shadow-sm active:scale-95 transition cursor-pointer`}
         >
           <CalendarIcon className="w-4 h-4" />
           <span>Get Quote</span>

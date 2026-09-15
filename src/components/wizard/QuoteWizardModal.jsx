@@ -132,19 +132,19 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-2xl bg-onyx-950 border-2 border-neutral-800 rounded-3xl text-white shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-2xl bg-white dark:bg-onyx-950 border-2 border-neutral-200 dark:border-neutral-800 rounded-3xl text-neutral-900 dark:text-white shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh]">
         
         {/* Modal Header */}
-        <div className="p-6 border-b border-neutral-800/80 flex items-center justify-between bg-black/60">
+        <div className="p-6 border-b border-neutral-200 dark:border-neutral-800/80 flex items-center justify-between bg-slate-50 dark:bg-black/60">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-neutral-800 border border-white/20 flex items-center justify-center font-heading font-black text-xs text-white">
+            <div className="w-8 h-8 rounded-lg bg-neutral-950 dark:bg-neutral-800 border border-neutral-900 dark:border-white/20 flex items-center justify-center font-heading font-black text-xs text-white shadow-xs">
               SH
             </div>
             <div>
-              <h2 className="font-heading font-black text-base sm:text-lg text-white leading-tight">
+              <h2 className="font-heading font-black text-base sm:text-lg text-neutral-950 dark:text-white leading-tight">
                 Request Free Handyman Estimate
               </h2>
-              <span className="text-xs text-neutral-400">
+              <span className="text-xs text-neutral-500 dark:text-neutral-400">
                 1-Year Craftsmanship Guarantee • No Hidden Fees
               </span>
             </div>
@@ -152,7 +152,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-neutral-400 hover:text-white transition"
+            className="p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-white/10 dark:hover:bg-white/20 text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition cursor-pointer"
             aria-label="Close dialog"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -164,8 +164,8 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
 
         {/* Step Progress Bar */}
         {currentStep < 5 && (
-          <div className="px-6 pt-4 pb-2 bg-neutral-900/30">
-            <div className="flex items-center justify-between text-xs text-neutral-400 font-semibold mb-2">
+          <div className="px-6 pt-4 pb-2 bg-slate-100/70 dark:bg-neutral-900/30">
+            <div className="flex items-center justify-between text-xs text-neutral-600 dark:text-neutral-400 font-semibold mb-2">
               <span>Step {currentStep} of 4: {
                 currentStep === 1 ? 'Trade & Task' :
                 currentStep === 2 ? 'Project Scope & Details' :
@@ -173,9 +173,9 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
               }</span>
               <span>{currentStep * 25}%</span>
             </div>
-            <div className="w-full h-1.5 bg-neutral-800 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-white transition-all duration-300 rounded-full" 
+                className="h-full bg-neutral-950 dark:bg-white transition-all duration-300 rounded-full" 
                 style={{ width: `${currentStep * 25}%` }} 
               />
             </div>
@@ -200,7 +200,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
           {currentStep === 1 && (
             <div className="space-y-6">
               <div>
-                <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-3">
+                <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-3">
                   1. Select Service Category:
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -209,10 +209,10 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                       key={cat}
                       type="button"
                       onClick={() => handleCategorySelect(cat)}
-                      className={`p-3 rounded-2xl text-left text-xs font-heading font-bold border transition-all ${
+                      className={`p-3 rounded-2xl text-left text-xs font-heading font-bold border transition-all cursor-pointer ${
                         formData.serviceCategory === cat
-                          ? 'bg-white text-black border-white shadow-lg'
-                          : 'bg-neutral-900 text-neutral-300 border-neutral-800 hover:border-neutral-600'
+                          ? 'bg-neutral-950 text-white dark:bg-white dark:text-black border-neutral-950 dark:border-white shadow-md scale-102'
+                          : 'bg-slate-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-300 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400'
                       }`}
                     >
                       {cat}
@@ -222,7 +222,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
               </div>
 
               <div>
-                <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-3">
+                <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-3">
                   2. What specific task do you need help with?
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -231,15 +231,15 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                       key={t}
                       type="button"
                       onClick={() => setFormData({ ...formData, taskType: t })}
-                      className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-semibold border flex items-center justify-between transition-all ${
+                      className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-semibold border flex items-center justify-between transition-all cursor-pointer ${
                         formData.taskType === t
-                          ? 'bg-neutral-800 text-white border-white'
-                          : 'bg-neutral-900/60 text-neutral-400 border-neutral-800 hover:text-white'
+                          ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-950 dark:text-white border-neutral-900 dark:border-white font-bold'
+                          : 'bg-slate-50 dark:bg-neutral-900/60 text-neutral-700 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800 hover:text-neutral-950 dark:hover:text-white'
                       }`}
                     >
                       <span>{t}</span>
                       {formData.taskType === t && (
-                        <svg className="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       )}
@@ -255,13 +255,13 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-2">
+                  <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-2">
                     Property Type:
                   </label>
                   <select
                     value={formData.propertyType}
                     onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
-                    className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white"
+                    className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white"
                   >
                     <option>Single Family Home</option>
                     <option>Lake Texoma Cabin / Vacation Home</option>
@@ -271,13 +271,13 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-2">
+                  <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-2">
                     Location in Home:
                   </label>
                   <select
                     value={formData.locationInHome}
                     onChange={(e) => setFormData({ ...formData, locationInHome: e.target.value })}
-                    className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white"
+                    className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white"
                   >
                     <option>Living Room / Interior</option>
                     <option>Kitchen / Pantry</option>
@@ -290,7 +290,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
               </div>
 
               <div>
-                <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-2">
+                <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-2">
                   Describe the issue or project in detail:
                 </label>
                 <textarea
@@ -298,12 +298,12 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="e.g. Drywall repair after leak in bathroom ceiling, about 2x3 ft hole. Need drywall patched and orange-peel texture matched before painting."
-                  className="w-full p-4 rounded-2xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white placeholder-neutral-500"
+                  className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white placeholder-neutral-400"
                 />
               </div>
 
-              <div className="p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800 text-xs text-neutral-400 flex items-center gap-3">
-                <svg className="w-5 h-5 text-neutral-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <div className="p-4 rounded-2xl bg-slate-100 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
+                <svg className="w-5 h-5 text-neutral-500 dark:text-neutral-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                   <circle cx="12" cy="13" r="4"/>
                 </svg>
@@ -329,21 +329,21 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                       key={u.label}
                       type="button"
                       onClick={() => setFormData({ ...formData, urgency: u.label })}
-                      className={`p-4 rounded-2xl text-left border transition-all ${
+                      className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
                         formData.urgency === u.label
-                          ? 'bg-white text-black border-white shadow-xl'
-                          : 'bg-neutral-900 text-neutral-300 border-neutral-800 hover:border-neutral-600'
+                          ? 'bg-neutral-950 text-white dark:bg-white dark:text-black border-neutral-950 dark:border-white shadow-md'
+                          : 'bg-slate-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-300 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400'
                       }`}
                     >
                       <span className="font-heading font-black text-sm block">{u.label}</span>
-                      <span className={`text-xs ${formData.urgency === u.label ? 'text-neutral-700' : 'text-neutral-500'}`}>{u.sub}</span>
+                      <span className={`text-xs ${formData.urgency === u.label ? 'text-neutral-300 dark:text-neutral-700' : 'text-neutral-500'}`}>{u.sub}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-2">
+                <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-2">
                   Preferred Date or Notes (Optional):
                 </label>
                 <input
@@ -351,7 +351,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                   value={formData.preferredDate}
                   onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
                   placeholder="e.g. Any weekday morning, or Saturday preferred"
-                  className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white placeholder-neutral-500"
+                  className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white placeholder-neutral-400"
                 />
               </div>
             </div>
@@ -361,7 +361,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
           {currentStep === 4 && (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-1">
                   Your Full Name:
                 </label>
                 <input
@@ -370,13 +370,13 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. John Miller"
-                  className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white"
+                  className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white placeholder-neutral-400"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-1">
+                  <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-1">
                     Phone Number (for text quote):
                   </label>
                   <input
@@ -385,12 +385,12 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="(903) 000-0000"
-                    className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white"
+                    className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white placeholder-neutral-400"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-1">
+                  <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-1">
                     Email Address:
                   </label>
                   <input
@@ -398,13 +398,13 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="john@example.com"
-                    className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white"
+                    className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white placeholder-neutral-400"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-1">
+                <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block mb-1">
                   Street Address & City:
                 </label>
                 <input
@@ -412,7 +412,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                   placeholder="e.g. 412 W Main St, Denison, TX 75020"
-                  className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-white text-sm focus:outline-none focus:border-white"
+                  className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white text-sm focus:outline-none focus:border-neutral-950 dark:focus:border-white placeholder-neutral-400"
                 />
               </div>
 
@@ -425,27 +425,27 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
           {/* STEP 5: Success Screen */}
           {currentStep === 5 && (
             <div className="py-8 text-center space-y-5">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center mx-auto text-emerald-400">
+              <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-500/20 border-2 border-emerald-500 dark:border-emerald-400 flex items-center justify-center mx-auto text-emerald-600 dark:text-emerald-400">
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
 
               <div className="space-y-2">
-                <span className="text-xs uppercase tracking-widest text-emerald-400 font-bold">
+                <span className="text-xs uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold">
                   Quote Request Confirmed
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-neutral-950 dark:text-white">
                   Thank You, {formData.name}!
                 </h3>
-                <p className="text-neutral-400 text-sm max-w-md mx-auto leading-relaxed">
-                  Your project request for <strong className="text-white">{formData.taskType}</strong> has been logged. Steve Miller will review your scope and follow up directly at <strong className="text-white">{formData.phone}</strong>.
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm max-w-md mx-auto leading-relaxed">
+                  Your project request for <strong className="text-neutral-950 dark:text-white">{formData.taskType}</strong> has been logged. Steve Miller will review your scope and follow up directly at <strong className="text-neutral-950 dark:text-white">{formData.phone}</strong>.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 max-w-sm mx-auto text-xs text-neutral-400">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 max-w-sm mx-auto text-xs text-neutral-500 dark:text-neutral-400">
                 <span className="text-neutral-500 block">Confirmation Code</span>
-                <span className="font-heading font-black text-white text-lg tracking-widest">
+                <span className="font-heading font-black text-neutral-950 dark:text-white text-lg tracking-widest">
                   {submissionResult?.quoteId || 'SH-782419'}
                 </span>
               </div>
@@ -453,7 +453,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
               <div className="pt-4">
                 <button
                   onClick={onClose}
-                  className="px-8 py-3.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition"
+                  className="px-8 py-3.5 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition cursor-pointer shadow-md"
                 >
                   RETURN TO HOMEPAGE
                 </button>
@@ -465,12 +465,12 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
 
         {/* Modal Footer Controls */}
         {currentStep < 5 && (
-          <div className="p-6 border-t border-neutral-800 bg-black/60 flex items-center justify-between">
+          <div className="p-6 border-t border-neutral-200 dark:border-neutral-800 bg-slate-50 dark:bg-black/60 flex items-center justify-between">
             {currentStep > 1 ? (
               <button
                 type="button"
                 onClick={handleBack}
-                className="px-6 py-3 rounded-full text-xs font-bold text-neutral-400 hover:text-white border border-neutral-800 hover:border-neutral-600 transition"
+                className="px-6 py-3 rounded-full text-xs font-bold text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-neutral-300 dark:border-neutral-800 hover:border-neutral-500 dark:hover:border-neutral-600 transition cursor-pointer"
               >
                 ← BACK
               </button>
@@ -482,7 +482,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
               <button
                 type="button"
                 onClick={handleNext}
-                className="px-8 py-3.5 rounded-full bg-white text-black font-heading font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition shadow-xl active:scale-95"
+                className="px-8 py-3.5 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-black font-heading font-bold text-xs uppercase tracking-wider dark:hover:bg-neutral-200 transition shadow-md active:scale-95 cursor-pointer"
               >
                 NEXT STEP →
               </button>
@@ -491,7 +491,7 @@ export default function QuoteWizardModal({ isOpen, onClose, initialCategory = nu
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="px-8 py-3.5 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-heading font-black text-xs uppercase tracking-wider transition shadow-xl active:scale-95 disabled:opacity-50"
+                className="px-8 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white dark:bg-emerald-400 dark:hover:bg-emerald-300 dark:text-black font-heading font-black text-xs uppercase tracking-wider transition shadow-md active:scale-95 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? 'SUBMITTING...' : 'CONFIRM & GET ESTIMATE ↗'}
               </button>

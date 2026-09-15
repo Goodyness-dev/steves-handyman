@@ -4,16 +4,20 @@
 
 @layer base {
   :root {
-    color-scheme: dark light;
+    color-scheme: light dark;
   }
   
+  html {
+    background-color: #f8fafc;
+  }
+
   html.dark {
     color-scheme: dark;
     background-color: #030303 !important;
   }
 
   body {
-    @apply bg-white text-gray-900 antialiased overflow-x-hidden transition-colors duration-200;
+    @apply bg-slate-50 text-neutral-900 antialiased overflow-x-hidden transition-colors duration-200;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -27,30 +31,38 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  .dark ::-webkit-scrollbar-track {
     background: #080808;
   }
   ::-webkit-scrollbar-thumb {
-    background: #262626;
+    background: #cbd5e1;
     border-radius: 9999px;
   }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #262626;
+  }
   ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
     background: #404040;
   }
 }
 
-/* Blueprint Grid Background Pattern (matching template) */
+/* Blueprint Grid Background Pattern (crisp architectural grid for light and dark) */
 .blueprint-grid {
   background-size: 56px 56px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
 }
 
-.blueprint-grid-light {
-  background-size: 56px 56px;
+.dark .blueprint-grid {
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
 /* Thick & Alive Tactile Card Design System */
