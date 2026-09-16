@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { BUSINESS_INFO } from '../../data/businessData';
 
 export default function AppleExactPage({ onOpenWizard, onNavigate, onOpenContacts }) {
@@ -252,6 +252,92 @@ export default function AppleExactPage({ onOpenWizard, onNavigate, onOpenContact
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================================================================
+          SECTION 4: GOOGLE MAP & DISPATCH COVERAGE (APPLE MINIMALIST LAYOUT)
+         ========================================================================= */}
+      <section id="contacts" className="relative py-28 sm:py-36 border-t border-black/[0.04] dark:border-white/[0.05]">
+        <div className="max-w-6xl mx-auto px-8 sm:px-12 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center relative">
+          
+          {/* Left: Location Details, Hours, Direct Phone & Directions */}
+          <div className="md:col-span-5 space-y-8 text-left">
+            <div>
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/15 text-neutral-600 dark:text-neutral-300 text-xs font-semibold uppercase tracking-wider mb-4 shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Mobile Dispatch Hub</span>
+              </div>
+              <h2 className="text-4xl sm:text-6xl lg:text-[68px] font-black font-heading tracking-tighter leading-[0.98] text-neutral-900 dark:text-white">
+                Denison &<br />
+                Lake Texoma
+              </h2>
+            </div>
+
+            <div className="space-y-4 text-xs sm:text-[13px] text-neutral-500 dark:text-neutral-400 max-w-sm leading-relaxed font-normal">
+              <p>
+                Headquartered out of Denison, TX 75020. Mobile service units dispatched daily across Sherman, Pottsboro, Whitesboro, and the entire Lake Texoma shoreline.
+              </p>
+              <p className="font-semibold text-neutral-800 dark:text-neutral-200">
+                Zero travel surcharge across Grayson County.
+              </p>
+            </div>
+
+            {/* Hours & Contact Pills */}
+            <div className="space-y-3 text-xs">
+              <div className="p-4 rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-md border border-white/80 dark:border-white/10 space-y-1">
+                <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider block">Hours of Operation</span>
+                <span className="font-semibold text-neutral-900 dark:text-white block">Mon – Fri: 7:30 AM – 6:00 PM</span>
+                <span className="text-neutral-500 dark:text-neutral-400 block text-[11px]">Sat: 8:00 AM – 3:00 PM (By Appt) • Sun: Emergency On-Call</span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}
+                  className="btn-apple-pill text-xs py-2.5 px-6 font-semibold"
+                >
+                  Call {BUSINESS_INFO.phone}
+                </a>
+                <a
+                  href={BUSINESS_INFO.googleMapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-apple-pill text-xs py-2.5 px-6 font-medium"
+                >
+                  Open in Maps ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Embedded Interactive Google Map in Apple Floating Bezel */}
+          <div className="md:col-span-7 flex justify-center md:justify-end">
+            <div className="relative w-full max-w-xl rounded-[36px] overflow-hidden p-2 bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/90 dark:border-white/15 apple-floating-shadow group">
+              <div className="relative h-80 sm:h-96 md:h-[420px] rounded-[28px] overflow-hidden bg-neutral-200 dark:bg-neutral-800">
+                <iframe
+                  title="Steve's Handyman Denison TX Google Map Location"
+                  src={BUSINESS_INFO.googleMapsEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full rounded-[28px]"
+                />
+
+                {/* Floating Map Pin Badge */}
+                <div className="absolute top-4 left-4 pointer-events-none">
+                  <div className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white text-xs font-semibold flex items-center gap-2 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Denison, TX 75020 • Grayson County</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

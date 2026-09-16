@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { BUSINESS_INFO } from '../../data/businessData';
 
 export default function AppleFooter({ onOpenWizard, onNavigate }) {
@@ -35,7 +35,14 @@ export default function AppleFooter({ onOpenWizard, onNavigate }) {
           >
             {BUSINESS_INFO.phone}
           </a>
-          <span className="text-neutral-400">Denison, TX 75020</span>
+          <a
+            href={BUSINESS_INFO.googleMapsLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
+            📍 Denison, TX 75020 (Google Map)
+          </a>
           <button
             onClick={() => onNavigate && onNavigate('admin')}
             className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"

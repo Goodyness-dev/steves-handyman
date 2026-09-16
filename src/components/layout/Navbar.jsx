@@ -99,7 +99,7 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
               Overview
             </button>
             <button
-              onClick={() => onOpenWizard()}
+              onClick={(e) => handleNavClick(e, '#contacts')}
               className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
             >
               Contacts
