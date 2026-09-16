@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
-import Hero from './components/home/Hero';
-import AppleShowcases from './components/home/AppleShowcases';
-import ServicesSection from './components/home/ServicesSection';
-import ProjectGallery from './components/home/ProjectGallery';
-import AboutSection from './components/home/AboutSection';
-import AmenitiesSection from './components/home/AmenitiesSection';
-import LocationHoursSection from './components/home/LocationHoursSection';
-import ReviewsSection from './components/home/ReviewsSection';
-import Footer from './components/layout/Footer';
+import AppleExactPage from './components/home/AppleExactPage';
+import AppleFooter from './components/layout/AppleFooter';
 import AllServicesPage from './components/services/AllServicesPage';
 import QuoteWizardModal from './components/wizard/QuoteWizardModal';
 import AdminLayout from './components/admin/AdminLayout';
@@ -185,24 +178,15 @@ export default function App() {
             onBackToHome={() => handleNavigate('home')}
           />
         ) : (
-          <>
-            <Hero onOpenWizard={handleOpenWizard} />
-            <AppleShowcases onOpenWizard={handleOpenWizard} />
-            <ServicesSection 
-              onOpenWizard={handleOpenWizard}
-              onViewAllServices={() => handleNavigate('services')}
-            />
-            <ProjectGallery onOpenWizard={handleOpenWizard} />
-            <AboutSection onOpenWizard={() => handleOpenWizard()} />
-            <AmenitiesSection onOpenWizard={() => handleOpenWizard()} />
-            <ReviewsSection onOpenWizard={() => handleOpenWizard()} />
-            <LocationHoursSection onOpenWizard={() => handleOpenWizard()} />
-          </>
+          <AppleExactPage 
+            onOpenWizard={handleOpenWizard}
+            onNavigate={handleNavigate}
+          />
         )}
       </main>
 
-      {/* Global Footer */}
-      <Footer 
+      {/* Apple Minimalist Footer */}
+      <AppleFooter 
         onOpenWizard={() => handleOpenWizard()} 
         onNavigate={handleNavigate}
       />

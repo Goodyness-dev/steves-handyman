@@ -78,34 +78,28 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
             </div>
           </button>
 
-          {/* CENTER/RIGHT: Minimal Text Nav Links from Template */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10 text-xs sm:text-[13px] font-medium text-neutral-600 dark:text-neutral-300 tracking-wide">
+          {/* CENTER/RIGHT: Minimal Text Nav Links EXACT to Template (Products, Prices, Overview, Contacts) */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-11 text-xs sm:text-[13px] font-normal text-neutral-600 dark:text-neutral-400 tracking-normal">
             <button
-              onClick={(e) => handleNavClick(e, '#services')}
+              onClick={(e) => handleNavClick(e, 'services')}
               className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
             >
-              Services
+              Products
             </button>
             <button
-              onClick={(e) => handleNavClick(e, '#craft')}
+              onClick={() => onOpenWizard()}
+              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+            >
+              Prices
+            </button>
+            <button
+              onClick={(e) => handleNavClick(e, '#epiphany')}
               className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
             >
               Overview
             </button>
             <button
-              onClick={(e) => handleNavClick(e, '#gallery')}
-              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
-            >
-              Work
-            </button>
-            <button
-              onClick={(e) => handleNavClick(e, '#reviews')}
-              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
-            >
-              Reviews
-            </button>
-            <button
-              onClick={(e) => handleNavClick(e, '#location')}
+              onClick={() => onOpenWizard()}
               className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
             >
               Contacts
