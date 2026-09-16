@@ -1,26 +1,76 @@
 import React, { useState } from 'react';
-import { 
-  X, Phone, Mail, MapPin, Calendar, Clock, Truck, Bus, 
-  CheckCircle2, Send, AlertCircle, Loader2, DollarSign, 
-  ShieldCheck, Wrench, Trash2, ArrowUpRight, Check
-} from 'lucide-react';
 import { quotesApi } from '../../services/api';
 import { BUSINESS_INFO } from '../../data/businessData';
 
+// Semantic inline SVGs
+const Icons = {
+  X: ({ className = "w-5 h-5" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  ),
+  Phone: ({ className = "w-3.5 h-3.5" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  ),
+  Mail: ({ className = "w-3.5 h-3.5" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
+    </svg>
+  ),
+  MapPin: ({ className = "w-3.5 h-3.5" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  ),
+  Hammer: ({ className = "w-4 h-4" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m15 12-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9" />
+      <path d="M17.64 15 22 10.64" />
+      <path d="m20.91 3.26-6.36 6.36" />
+      <path d="m12.44 11.73 4.24 4.24" />
+      <path d="m14.56 5.38 4.24 4.24" />
+    </svg>
+  ),
+  Send: ({ className = "w-4 h-4" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="22" y1="2" x2="11" y2="13" />
+      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </svg>
+  ),
+  ShieldCheck: ({ className = "w-4 h-4" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  ),
+  Trash: ({ className = "w-4 h-4" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="3 6 5 6 21 6" />
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+    </svg>
+  )
+};
+
 export default function QuoteDetailModal({ quote, onClose, onUpdate }) {
-  const [activeTab, setActiveTab] = useState('quote_studio'); // 'quote_studio' | 'full_details'
   const [status, setStatus] = useState(quote?.status || 'pending');
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
 
-  // Quote Studio State
-  const [price, setPrice] = useState(quote?.quotedPrice || '');
-  const [turnaround, setTurnaround] = useState(quote?.estimatedTurnaround || 'Prompt scheduling / 24-48 hours');
-  const [warranty, setWarranty] = useState(quote?.warrantyNote || '100% Workmanship & Parts Guarantee');
+  // Estimate Composer State
+  const [price, setPrice] = useState(quote?.quotedPrice || quote?.quoted_price || '');
+  const [turnaround, setTurnaround] = useState(quote?.estimatedTurnaround || 'Prompt scheduling (1-3 days on-site)');
+  const [warranty, setWarranty] = useState(quote?.warrantyNote || '1-Year Unconditional Craftsmanship Guarantee');
+  
+  const customerName = quote?.customer_name || quote?.name || 'Homeowner';
+  const serviceTitle = quote?.detailed_service || quote?.detailedService || quote?.service_category || 'home repair project';
+
   const [message, setMessage] = useState(
     quote?.adminMessage || 
-    (quote?.make
-      ? `Hi ${quote?.name || 'Customer'}, thanks for reaching out to ${BUSINESS_INFO.name}! I reviewed your repair request for your ${quote?.make} ${quote?.modelAndYear || ''}. Give us a call at ${BUSINESS_INFO.phone} or reply here to confirm your appointment.`
-      : `Hi ${quote?.name || 'Customer'}, thanks for reaching out to ${BUSINESS_INFO.name}! I reviewed your service request for "${quote?.serviceCategory || quote?.detailedService || 'your project'}". Give us a call at ${BUSINESS_INFO.phone} or reply here to confirm your appointment.`)
+    `Hi ${customerName}, thanks for contacting Steve's Handyman LLC in Denison! I've reviewed your project request for "${serviceTitle}". Here is our official estimate. All labor and materials are backed by our unconditional 1-year craftsmanship guarantee. Please give us a call at ${BUSINESS_INFO.phone} or reply here to confirm your appointment.`
   );
   
   const [isSendingQuote, setIsSendingQuote] = useState(false);
@@ -45,8 +95,8 @@ export default function QuoteDetailModal({ quote, onClose, onUpdate }) {
 
   const handleSendQuote = async (e) => {
     e.preventDefault();
-    if (!price.trim()) {
-      setSendError('Please enter a quote price before sending.');
+    if (!price.toString().trim()) {
+      setSendError('Please enter an estimate price before sending.');
       return;
     }
 
@@ -68,389 +118,254 @@ export default function QuoteDetailModal({ quote, onClose, onUpdate }) {
         onUpdate(result.quote);
       }
     } catch (err) {
-      setSendError(err.data?.error || err.message || 'Failed to send quote email.');
+      setSendError(err.data?.error || err.message || 'Failed to dispatch estimate.');
     } finally {
       setIsSendingQuote(false);
     }
   };
 
   const handleDelete = async () => {
-    if (!window.confirm(`Are you sure you want to delete Quote #${quote.id}?`)) return;
+    if (!window.confirm(`Are you sure you want to remove Work Order #${quote.id}?`)) return;
     setIsDeleting(true);
     try {
       await quotesApi.deleteQuote(quote.id);
       if (onUpdate) onUpdate({ ...quote, _deleted: true });
       onClose();
     } catch (err) {
-      alert('Error deleting quote: ' + err.message);
+      alert('Error removing quote: ' + err.message);
       setIsDeleting(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-xs overflow-y-auto">
       <div 
-        className="relative w-full max-w-4xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]"
+        className="relative w-full max-w-4xl bg-white dark:bg-[#0d1017] border border-slate-200 dark:border-neutral-800 rounded-3xl shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh] text-slate-900 dark:text-slate-100"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="px-6 py-5 border-b border-slate-200 flex flex-wrap items-center justify-between gap-4 bg-white">
-          <div className="flex items-center space-x-3">
-            <div className="w-11 h-11 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600 shadow-xs">
-              <Wrench className="w-5 h-5" />
+        <div className="px-6 py-5 border-b border-slate-200 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-4 bg-slate-50/70 dark:bg-[#12151f]/70">
+          <div className="flex items-center space-x-3.5">
+            <div className="w-10 h-10 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 flex items-center justify-center shadow-xs">
+              <Icons.Hammer className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="font-mono text-xs font-bold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-md border border-red-200">
-                  #{quote.id}
-                </span>
-                <span className="text-xs text-slate-400">
-                  {new Date(quote.createdAt).toLocaleDateString()} at {new Date(quote.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                <h3 className="font-heading font-black text-lg text-slate-900 dark:text-white">
+                  Estimate Studio #{quote.id}
+                </h3>
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                  status === 'completed'
+                    ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+                    : status === 'quoted'
+                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
+                    : 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800'
+                }`}>
+                  {status === 'completed' ? 'Completed' : status === 'quoted' ? 'Estimate Sent' : 'Needs Review'}
                 </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black font-heading text-slate-900 mt-0.5">
-                {quote.name} — {quote.make} {quote.modelAndYear}
-              </h2>
+              <span className="text-xs text-slate-400 dark:text-neutral-500">
+                Created: {new Date(quote.created_at || quote.createdAt || Date.now()).toLocaleString()}
+              </span>
             </div>
           </div>
 
-          <div className="flex items-center space-x-2.5">
-            {/* Status Selector */}
-            <select
-              value={status}
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => handleStatusChange(status === 'completed' ? 'pending' : 'completed')}
               disabled={isUpdatingStatus}
-              onChange={(e) => handleStatusChange(e.target.value)}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition outline-none cursor-pointer ${
-                status === 'pending' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                status === 'quoted' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                status === 'completed' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                'bg-slate-100 text-slate-600 border-slate-200'
+              className={`py-1.5 px-3 rounded-xl font-bold text-xs transition border cursor-pointer ${
+                status === 'completed'
+                  ? 'bg-slate-100 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300 border-slate-300 dark:border-neutral-700'
+                  : 'bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600'
               }`}
             >
-              <option value="pending">⏳ Pending (Needs Quote)</option>
-              <option value="in_review">🔍 In Review</option>
-              <option value="quoted">📧 Quoted (Sent to Customer)</option>
-              <option value="completed">✅ Completed Repair</option>
-              <option value="archived">📦 Archived</option>
-            </select>
+              {status === 'completed' ? 'Reopen Order' : '✓ Mark as Completed'}
+            </button>
+
+            <button
+              onClick={handleDelete}
+              disabled={isDeleting}
+              className="p-2 text-slate-400 hover:text-red-600 dark:hover:text-red-400 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/30 transition cursor-pointer"
+              title="Delete Work Order"
+            >
+              <Icons.Trash className="w-4 h-4" />
+            </button>
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition"
-              aria-label="Close modal"
+              className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-xl hover:bg-slate-100 dark:hover:bg-neutral-800 transition cursor-pointer"
             >
-              <X className="w-5 h-5" />
+              <Icons.X className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Quick Contact & Info Bar */}
-        <div className="px-6 py-3 bg-slate-50 border-b border-slate-200/80 flex flex-wrap items-center gap-4 text-xs text-slate-600">
-          <a 
-            href={`tel:${quote.phone?.replace(/[^0-9]/g, '')}`}
-            className="flex items-center space-x-1.5 hover:text-slate-900 text-slate-700 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs transition"
-          >
-            <Phone className="w-3.5 h-3.5 text-red-600" />
-            <span className="font-semibold">{quote.phone || 'No Phone'}</span>
-            <ArrowUpRight className="w-3 h-3 text-slate-400" />
-          </a>
-
-          <a 
-            href={`mailto:${quote.email}`}
-            className="flex items-center space-x-1.5 hover:text-slate-900 text-slate-700 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs transition"
-          >
-            <Mail className="w-3.5 h-3.5 text-red-600" />
-            <span className="font-semibold">{quote.email}</span>
-            <ArrowUpRight className="w-3 h-3 text-slate-400" />
-          </a>
-
-          {quote.location && (
-            <div className="flex items-center space-x-1.5 text-slate-500">
-              <MapPin className="w-3.5 h-3.5 text-slate-400" />
-              <span>{quote.location}</span>
+        {/* Modal Body: Split 2-Column Studio */}
+        <div className="flex-1 overflow-y-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left Column: Homeowner & Property Details (5 Cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="bg-slate-50 dark:bg-neutral-900/60 border border-slate-200 dark:border-neutral-800 rounded-2xl p-4 space-y-3">
+              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-neutral-500 block">
+                Homeowner Contact
+              </span>
+              <div>
+                <h4 className="font-bold text-base text-slate-900 dark:text-white">
+                  {quote.customer_name || quote.name || 'Client'}
+                </h4>
+                <div className="mt-2 space-y-1 text-xs">
+                  {(quote.customer_phone || quote.phone) && (
+                    <div className="flex items-center space-x-2 text-slate-600 dark:text-neutral-300">
+                      <Icons.Phone className="w-3.5 h-3.5 text-emerald-600" />
+                      <a href={`tel:${quote.customer_phone || quote.phone}`} className="hover:underline font-medium">
+                        {quote.customer_phone || quote.phone}
+                      </a>
+                    </div>
+                  )}
+                  {(quote.customer_email || quote.email) && (
+                    <div className="flex items-center space-x-2 text-slate-600 dark:text-neutral-300">
+                      <Icons.Mail className="w-3.5 h-3.5 text-blue-500" />
+                      <a href={`mailto:${quote.customer_email || quote.email}`} className="hover:underline truncate">
+                        {quote.customer_email || quote.email}
+                      </a>
+                    </div>
+                  )}
+                  <div className="flex items-center space-x-2 text-slate-600 dark:text-neutral-300">
+                    <Icons.MapPin className="w-3.5 h-3.5 text-amber-500" />
+                    <span>{quote.location || 'Denison, TX'}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          )}
 
-          {quote.needsTowing && (
-            <span className="bg-red-50 text-red-700 border border-red-200 px-2.5 py-0.5 rounded-full font-bold text-[11px] flex items-center space-x-1">
-              <Truck className="w-3 h-3" />
-              <span>Towing Needed</span>
-            </span>
-          )}
-
-          {quote.needsShuttle && (
-            <span className="bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-0.5 rounded-full font-bold text-[11px] flex items-center space-x-1">
-              <Bus className="w-3 h-3" />
-              <span>Shuttle Requested</span>
-            </span>
-          )}
-        </div>
-
-        {/* Tab switcher */}
-        <div className="flex border-b border-slate-200 px-6 bg-white">
-          <button
-            onClick={() => setActiveTab('quote_studio')}
-            className={`py-3.5 px-4 font-bold text-xs sm:text-sm border-b-2 transition flex items-center space-x-2 ${
-              activeTab === 'quote_studio'
-                ? 'border-red-600 text-red-600'
-                : 'border-transparent text-slate-500 hover:text-slate-800'
-            }`}
-          >
-            <Send className="w-4 h-4 text-red-600" />
-            <span>Send Quote to Customer</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('full_details')}
-            className={`py-3.5 px-4 font-bold text-xs sm:text-sm border-b-2 transition flex items-center space-x-2 ${
-              activeTab === 'full_details'
-                ? 'border-shop-red text-shop-red'
-                : 'border-transparent text-slate-500 hover:text-slate-800'
-            }`}
-          >
-            <Wrench className="w-4 h-4 text-slate-400" />
-            <span>{quote.make ? 'Full Vehicle & Issue Specs' : 'Full Service & Issue Specs'}</span>
-          </button>
-        </div>
-
-        {/* Body Content */}
-        <div className="p-6 overflow-y-auto flex-1 space-y-6 bg-slate-50/40">
-          {activeTab === 'quote_studio' ? (
-            /* TAB 1: Quote Dispatch Studio */
-            <div className="space-y-6">
-              {/* Previous Quote Alert Banner */}
-              {quote.quotedPrice && (
-                <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 flex items-start space-x-3 text-xs sm:text-sm text-blue-800 shadow-xs">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                  <div>
-                    <div className="font-bold text-blue-900">Previous Quote Sent on {quote.quoteSentAt ? new Date(quote.quoteSentAt).toLocaleString() : 'N/A'}</div>
-                    <div>Price: <strong className="text-blue-900 font-mono">${quote.quotedPrice}</strong> • Turnaround: {quote.estimatedTurnaround || 'N/A'}</div>
-                    <div className="text-blue-600 text-xs mt-1">You can update the pricing below and re-send anytime.</div>
-                  </div>
+            <div className="bg-slate-50 dark:bg-neutral-900/60 border border-slate-200 dark:border-neutral-800 rounded-2xl p-4 space-y-3">
+              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-neutral-500 block">
+                Project & Scope of Work
+              </span>
+              <div>
+                <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                  {quote.service_category || quote.serviceCategory || 'Handyman Service'}
                 </div>
-              )}
+                <h5 className="font-bold text-sm text-slate-900 dark:text-white mt-0.5">
+                  {quote.detailed_service || quote.detailedService || 'Repair Project'}
+                </h5>
+                <p className="text-xs text-slate-600 dark:text-neutral-400 mt-2 whitespace-pre-wrap leading-relaxed">
+                  {quote.details || 'Customer requested consultation & estimate.'}
+                </p>
+              </div>
 
-              {/* Success Banner */}
-              {sendSuccess && (
-                <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center space-x-3 shadow-xs animate-fade-in">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
-                  <div>
-                    <strong className="block text-emerald-900 font-bold">Quote Successfully Dispatched to {quote.email}!</strong>
-                    <span>An official branded breakdown email with your estimate has been delivered to the customer.</span>
-                  </div>
-                </div>
-              )}
+              <div className="pt-2 border-t border-slate-200 dark:border-neutral-800 text-xs flex justify-between text-slate-500 dark:text-neutral-400">
+                <span>Requested Urgency:</span>
+                <span className="font-bold text-slate-800 dark:text-neutral-200">{quote.urgency || quote.timeline || 'Flexible'}</span>
+              </div>
+            </div>
+          </div>
 
-              {/* Error Banner */}
-              {sendError && (
-                <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-800 text-sm flex items-center space-x-3">
-                  <AlertCircle className="w-5 h-5 text-red-600 shrink-0" />
-                  <span>{sendError}</span>
-                </div>
-              )}
-
-              <form onSubmit={handleSendQuote} className="space-y-5 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
-                {/* Price & Turnaround Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Total Quoted Price ($ USD) <span className="text-red-600">*</span>
-                    </label>
-                    <div className="relative">
-                      <DollarSign className="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="text"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value.replace(/[^0-9.]/g, ''))}
-                        placeholder="e.g. 450.00"
-                        className="w-full bg-slate-50 border border-slate-200 focus:border-red-600 focus:bg-white rounded-xl pl-10 pr-4 py-3 text-base text-slate-900 placeholder-slate-400 outline-none font-bold font-mono transition"
-                        required
-                      />
-                    </div>
-                    <span className="text-[11px] text-slate-400 mt-1 block">Includes parts, diagnostics, and shop labor.</span>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Estimated Turnaround Time
-                    </label>
-                    <div className="relative">
-                      <Clock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="text"
-                        value={turnaround}
-                        onChange={(e) => setTurnaround(e.target.value)}
-                        placeholder="e.g. Same Day (ready by 4:30 PM) or 1-2 Days"
-                        className="w-full bg-slate-50 border border-slate-200 focus:border-red-600 focus:bg-white rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition"
-                      />
-                    </div>
-                    <span className="text-[11px] text-slate-400 mt-1 block">Tells customer when vehicle will be ready.</span>
-                  </div>
-                </div>
-
-                {/* Warranty Note */}
+          {/* Right Column: Steve's Official Estimate Composer (7 Cols) */}
+          <div className="lg:col-span-7">
+            <form onSubmit={handleSendQuote} className="bg-white dark:bg-[#0c0e14] border border-slate-200 dark:border-neutral-800 rounded-2xl p-5 space-y-4 shadow-sm">
+              <div className="flex items-center justify-between">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                    Warranty & Guarantee Coverage
+                  <h4 className="font-heading font-black text-sm text-slate-900 dark:text-white">
+                    Official Estimate Composer
+                  </h4>
+                  <p className="text-[11px] text-slate-400 dark:text-neutral-500">
+                    Draft and dispatch an estimate with 1-year guarantee directly to the client.
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-lg border border-emerald-200 dark:border-emerald-800">
+                  Steve Miller Approved
+                </span>
+              </div>
+
+              {sendSuccess && (
+                <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold">
+                  ✓ Estimate successfully saved and sent to homeowner!
+                </div>
+              )}
+
+              {sendError && (
+                <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 text-xs">
+                  {sendError}
+                </div>
+              )}
+
+              {/* Price & Turnaround */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 dark:text-neutral-300 mb-1">
+                    Estimate Price ($ USD) *
                   </label>
                   <div className="relative">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
                     <input
-                      type="text"
-                      value={warranty}
-                      onChange={(e) => setWarranty(e.target.value)}
-                      placeholder="e.g. 12-month / 12,000-mile parts & labor warranty"
-                      className="w-full bg-slate-50 border border-slate-200 focus:border-red-600 focus:bg-white rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition"
+                      type="number"
+                      step="0.01"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      placeholder="350.00"
+                      className="w-full bg-slate-50 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 rounded-xl pl-7 pr-3 py-2 text-sm font-bold text-slate-900 dark:text-white outline-none focus:border-slate-900 dark:focus:border-white transition"
+                      required
                     />
                   </div>
                 </div>
 
-                {/* Personal Message / Note to Customer */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                    {BUSINESS_INFO.owner?.name ? `${BUSINESS_INFO.owner.name}'s Note to Customer` : 'Direct Message to Customer'}
+                  <label className="block text-xs font-bold text-slate-700 dark:text-neutral-300 mb-1">
+                    Estimated Timeline / Turnaround
                   </label>
-                  <textarea
-                    rows={4}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Write a custom explanation, recommendations, or deposit instructions..."
-                    className="w-full bg-slate-50 border border-slate-200 focus:border-shop-red focus:bg-white rounded-xl p-4 text-sm text-slate-900 placeholder-slate-400 outline-none leading-relaxed transition"
+                  <input
+                    type="text"
+                    value={turnaround}
+                    onChange={(e) => setTurnaround(e.target.value)}
+                    placeholder="1-2 Days / Prompt scheduling"
+                    className="w-full bg-slate-50 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:border-slate-900 dark:focus:border-white transition"
                   />
-                  <span className="text-[11px] text-slate-400 mt-1 block">
-                    This message is prominently highlighted in the customer's quote email.
-                  </span>
-                </div>
-
-                {/* Action Button */}
-                <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                  <div className="text-xs text-slate-500">
-                    Recipient: <strong className="text-slate-800">{quote.email}</strong>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSendingQuote}
-                    className="w-full sm:w-auto py-3 px-6 bg-shop-red hover:bg-shop-redHover disabled:opacity-50 text-white font-bold text-xs sm:text-sm rounded-xl transition shadow-md shadow-shop-red/20 flex items-center justify-center space-x-2 active:scale-95 cursor-pointer"
-                  >
-                    {isSendingQuote ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending Quote Email...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>Send Official Quote to Customer</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </form>
-            </div>
-          ) : (
-            /* TAB 2: Full Details */
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Request / Vehicle Specs */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 space-y-3 shadow-xs">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
-                    {quote.make ? 'Vehicle Specifications' : 'Service & Property Details'}
-                  </span>
-                  {quote.make ? (
-                    <>
-                      <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                        <span className="text-slate-500">Make:</span>
-                        <span className="text-slate-900 font-bold">{quote.make}</span>
-                      </div>
-                      <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                        <span className="text-slate-500">Model & Year:</span>
-                        <span className="text-slate-900 font-bold">{quote.modelAndYear}</span>
-                      </div>
-                      {quote.engineType && (
-                        <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                          <span className="text-slate-500">Engine Type:</span>
-                          <span className="text-shop-red font-bold">{quote.engineType}</span>
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      {quote.propertyType && (
-                        <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                          <span className="text-slate-500">Property / Location:</span>
-                          <span className="text-slate-900 font-bold">{quote.propertyType}</span>
-                        </div>
-                      )}
-                      {quote.modelAndYear && (
-                        <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                          <span className="text-slate-500">Item / Equipment:</span>
-                          <span className="text-slate-900 font-bold">{quote.modelAndYear}</span>
-                        </div>
-                      )}
-                    </>
-                  )}
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-500">Timeline:</span>
-                    <span className="text-slate-900 font-medium">{quote.timeline || 'Prompt'} {quote.specificDate ? `(${quote.specificDate})` : ''}</span>
-                  </div>
-                </div>
-
-                {/* Service Specs */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 space-y-3 shadow-xs">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Service Requested</span>
-                  <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                    <span className="text-slate-500">Category:</span>
-                    <span className="text-slate-900 font-bold">{quote.serviceCategory}</span>
-                  </div>
-                  <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                    <span className="text-slate-500">Detailed Service:</span>
-                    <span className="text-slate-900 font-bold">{quote.detailedService}</span>
-                  </div>
-                  <div className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                    <span className="text-slate-500">Towing Needed:</span>
-                    <span className={quote.needsTowing ? 'text-red-600 font-bold' : 'text-slate-500'}>
-                      {quote.needsTowing ? 'Yes' : 'No'}
-                    </span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-500">Shuttle Ride:</span>
-                    <span className={quote.needsShuttle ? 'text-amber-600 font-bold' : 'text-slate-500'}>
-                      {quote.needsShuttle ? 'Yes' : 'No'}
-                    </span>
-                  </div>
                 </div>
               </div>
 
-              {/* Customer Notes */}
-              {quote.details && (
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 space-y-2 shadow-xs">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Customer Symptoms & Notes</span>
-                  <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">{quote.details}</p>
+              {/* Warranty Guarantee */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-neutral-300 mb-1">
+                  Craftsmanship Warranty
+                </label>
+                <div className="flex items-center space-x-2 bg-slate-50 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs">
+                  <Icons.ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <input
+                    type="text"
+                    value={warranty}
+                    onChange={(e) => setWarranty(e.target.value)}
+                    className="w-full bg-transparent outline-none text-slate-800 dark:text-neutral-200 font-medium"
+                  />
                 </div>
-              )}
+              </div>
 
-              {/* Custom Issue Description if applicable */}
-              {quote.customIssue && quote.customIssue !== 'N/A' && (
-                <div className="bg-red-50/50 border border-red-200 rounded-2xl p-5 space-y-2">
-                  <span className="text-xs font-bold text-red-600 uppercase tracking-wider block">Custom Issue Explanation</span>
-                  <p className="text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">{quote.customIssue}</p>
-                </div>
-              )}
+              {/* Message to Homeowner */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-neutral-300 mb-1">
+                  Personal Estimate Note to Homeowner
+                </label>
+                <textarea
+                  rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full bg-slate-50 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:border-slate-900 dark:focus:border-white transition resize-none leading-relaxed"
+                />
+              </div>
 
-              {/* Delete Button */}
-              <div className="pt-4 border-t border-slate-200 flex justify-end">
+              {/* Submit CTA */}
+              <div className="pt-2 flex items-center justify-end space-x-2">
                 <button
-                  type="button"
-                  onClick={handleDelete}
-                  disabled={isDeleting}
-                  className="px-4 py-2 text-xs text-red-600 hover:text-red-700 hover:bg-red-50 rounded-xl transition flex items-center space-x-1.5 border border-red-200"
+                  type="submit"
+                  disabled={isSendingQuote}
+                  className="py-2.5 px-5 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-slate-950 font-bold text-xs rounded-xl transition shadow-md flex items-center space-x-2 disabled:opacity-50 cursor-pointer active:scale-95"
                 >
-                  <Trash2 className="w-4 h-4" />
-                  <span>{isDeleting ? 'Deleting...' : 'Delete Quote'}</span>
+                  <Icons.Send className="w-3.5 h-3.5" />
+                  <span>{isSendingQuote ? 'Sending Estimate...' : 'Dispatch Official Estimate'}</span>
                 </button>
               </div>
-            </div>
-          )}
+            </form>
+          </div>
         </div>
       </div>
     </div>

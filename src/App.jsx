@@ -66,18 +66,16 @@ export default function App() {
   // Apply dark class to <html> and <body> immediately
   useEffect(() => {
     const root = document.documentElement;
-    if (darkMode || currentPage === 'admin') {
+    if (darkMode) {
       root.classList.add('dark');
       document.body.classList.add('dark');
-      if (currentPage !== 'admin') {
-        localStorage.setItem('steves_handyman_theme', 'dark');
-      }
+      localStorage.setItem('steves_handyman_theme', 'dark');
     } else {
       root.classList.remove('dark');
       document.body.classList.remove('dark');
       localStorage.setItem('steves_handyman_theme', 'light');
     }
-  }, [darkMode, currentPage]);
+  }, [darkMode]);
 
   const toggleDarkMode = () => {
     setDarkMode(prev => {
@@ -142,6 +140,8 @@ export default function App() {
     return isAdminAuthenticated ? (
       <AdminLayout
         user={adminUser}
+        darkMode={darkMode}
+        onToggleDarkMode={toggleDarkMode}
         onLogout={() => {
           setIsAdminAuthenticated(false);
           setAdminUser(null);
@@ -150,6 +150,8 @@ export default function App() {
       />
     ) : (
       <AdminLogin
+        darkMode={darkMode}
+        onToggleDarkMode={toggleDarkMode}
         onLoginSuccess={(user) => {
           setIsAdminAuthenticated(true);
           setAdminUser(user);
