@@ -1,7 +1,7 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-# AI Crawlers & LLM Agents
+# AI Crawlers & LLM Search Agents
 User-agent: GPTBot
 Allow: /
 
@@ -21,4 +21,4 @@ User-agent: Applebot-Extended
 Allow: /
 
 # Sitemaps & Context
-Sitemap: https://steveshandymantx.com/sitemap.xml
+Sitemap: https://steves-handyman-one.vercel.app/sitemap.xml
