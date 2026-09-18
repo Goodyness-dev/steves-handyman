@@ -27,6 +27,20 @@ export default {
           amber: '#f59e0b',
           copper: '#ea580c',
           gold: '#eab308',
+        },
+        wood: {
+          950: '#140c07',
+          900: '#23150d',
+          850: '#2e1c12',
+          800: '#3d2616', // brand espresso brown (from HOME button in image)
+          700: '#5c3826', // rich chestnut
+          600: '#7a4522', // saddle wood
+          500: '#965529', // timber brown
+          400: '#b87333', // copper/bronze
+          300: '#d49b6a', // light wood
+          200: '#e8decb', // warm wood border
+          100: '#f5eee6', // almond cream
+          50:  '#faf6f0', // soft linen parchment
         }
       },
       fontFamily: {

@@ -1,7 +1,7 @@
 export const BUSINESS_INFO = {
-  name: "Steve's Handyman",
-  legalName: "Steve's Handyman LLC",
-  tagline: "Precision Home Repair & Multi-Trade Craftsmanship — Denison & Texoma's Trusted Handyman",
+  name: "Steve's Handyman Services",
+  legalName: "Steve's Handyman Services LLC",
+  tagline: "“We do it right or not at all.” — 30+ Years Experience in All Handyman Tasks & Deck Repair",
   address: {
     street: "Serving Denison & Grayson County",
     city: "Denison",
@@ -28,31 +28,31 @@ export const BUSINESS_INFO = {
 
   history: [
     {
-      year: "1998",
+      year: "1994",
       title: "Woodworking & Carpentry Roots",
-      description: "Steve began as an apprentice cabinetmaker and residential framer, mastering tight tolerances, joinery, and structural carpentry."
+      description: "Steve began mastering carpentry, structural framing, joinery, and all residential repairs with tight tolerances."
     },
     {
-      year: "2008",
-      title: "Multi-Trade Licensure & Handyman Launch",
-      description: "Founded Steve's Handyman to give Texoma homeowners a single trusted, clean, and reliable master contractor for punch-lists, drywall, fixtures, and rot repair."
+      year: "2004",
+      title: "Steve's Handyman Services Launch",
+      description: "Founded on the core principle: 'We do it right or not at all.' Serving homeowners with clean, honest, multi-trade craftsmanship."
     },
     {
-      year: "2018",
-      title: "Deck & Exterior Specialty Division",
-      description: "Expanded into custom composite deck builds, rot restoration, fencing, and precision exterior finish work built to withstand Texas heat and weather."
+      year: "2014",
+      title: "Deck Repair & Exterior Specialty",
+      description: "Expanded into custom composite and cedar deck repair, rot restoration, fencing, and weatherproofing."
     },
     {
       year: "Present",
-      title: "Texoma's Highest-Rated Craftsman",
-      description: "Over 2,400 successfully completed residential projects across Denison, Sherman, Pottsboro, and Lake Texoma with a 100% satisfaction guarantee."
+      title: "30+ Years of Master Craftsmanship",
+      description: "Over 30 years experience across all phases of handyman tasks, deck repair, trim carpentry, painting, and drywall."
     }
   ],
 
   owner: {
-    name: "Steve Miller",
-    role: "Founder & Master Craftsman",
-    quote: "A true handyman treats every home as if his own family slept under that roof. We take the stress out of home repair by arriving on time, working clean, explaining the fix transparently, and standing behind our craftsmanship with an unconditional 1-year guarantee."
+    name: "Steve Kornblatt",
+    role: "Owner & Master Handyman",
+    quote: "We do it right or not at all. Steve's Handyman Services has 30+ years experience in all phases of handyman tasks. Specializing in deck repair, but services extend to all handyman projects and painting. It all starts with your idea..."
   },
 
   reviews: [

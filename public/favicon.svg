@@ -1,26 +1,41 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1c1d21"/>
-      <stop offset="100%" stop-color="#050607"/>
-    </linearGradient>
-    <linearGradient id="metal" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#d1d5db"/>
-    </linearGradient>
+    <clipPath id="sq">
+      <rect width="64" height="64" rx="14"/>
+    </clipPath>
   </defs>
-  <!-- Squircle Base -->
-  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
-  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
-  
-  <!-- Steve's Handyman Modern "S" Mark with Precision Cut -->
-  <path d="M42 20.5 C42 16.5 38 14 32 14 C25 14 20 17.5 20 23 C20 32 44 28 44 39 C44 45.5 39 50 32 50 C24 50 19 45.5 19 40" 
-        fill="none" 
-        stroke="url(#metal)" 
-        stroke-width="6" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  
-  <!-- Precision Center Level Indicator Point -->
-  <circle cx="32" cy="32" r="2.5" fill="#10b981"/>
+
+  <!-- Base Squircle -->
+  <rect width="64" height="64" rx="14" fill="#f6f0e6"/>
+
+  <!-- 4-Quadrant Logo Grid -->
+  <g clip-path="url(#sq)" transform="translate(6, 6) scale(0.8125)">
+    <!-- Quadrant 1: Top-Left Paintbrush (Espresso Brown) -->
+    <rect x="0" y="0" width="30" height="30" rx="3" fill="#3d2616"/>
+    <!-- Paintbrush Icon -->
+    <path d="M7 23 L13 23 L16 16 L23 9 C24 8 24 7 23 6 C22 5 21 5 20 6 L13 13 L7 16 Z" fill="#ffffff"/>
+    <path d="M7 23 L10 20 L8 18 L5 21 C5 22 6 23 7 23 Z" fill="#d49b6a"/>
+
+    <!-- Quadrant 2: Top-Right Screw (Vibrant Orange) -->
+    <rect x="34" y="0" width="30" height="30" rx="3" fill="#ea580c"/>
+    <!-- Screw Icon -->
+    <path d="M40 7 L44 5 L55 16 L53 20 L40 7 Z" fill="#ffffff"/>
+    <path d="M43 14 L49 20 M46 17 L52 23 M49 20 L55 26" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <polygon points="56,27 52,28 51,24" fill="#ffffff"/>
+
+    <!-- Quadrant 3: Bottom-Left Claw Hammer (Saddle Chestnut Brown) -->
+    <rect x="0" y="34" width="30" height="30" rx="3" fill="#8b4513"/>
+    <!-- Hammer Icon -->
+    <path d="M6 44 L16 41 L14 38 L24 37 C26 37 27 38 27 39 C27 40 25 41 24 42 L20 44 L25 58 L21 60 L16 46 Z" fill="#ffffff"/>
+
+    <!-- Quadrant 4: Bottom-Right Ladder (Golden Amber) -->
+    <rect x="34" y="34" width="30" height="30" rx="3" fill="#e59b20"/>
+    <!-- Ladder Icon -->
+    <line x1="39" y1="59" x2="57" y2="39" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="45" y1="63" x2="63" y2="43" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="42" y1="56" x2="48" y2="60" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <line x1="46" y1="51" x2="52" y2="55" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <line x1="50" y1="46" x2="56" y2="50" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <line x1="54" y1="41" x2="60" y2="45" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  </g>
 </svg>

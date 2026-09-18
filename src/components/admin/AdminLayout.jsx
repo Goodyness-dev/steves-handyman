@@ -131,10 +131,9 @@ export default function AdminLayout({ user, darkMode, onToggleDarkMode, onLogout
           {/* Brand Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3.5 min-w-0">
-              {/* Steve's Handyman Custom Squircle Mark */}
-              <div className="w-11 h-11 shrink-0 rounded-2xl bg-[#111318] dark:bg-[#181b22] border border-white/10 flex items-center justify-center shadow-md relative group">
-                <span className="font-heading font-black text-white text-base tracking-wider">S</span>
-                <span className="absolute bottom-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-[#111318]" />
+              {/* Steve's Handyman Official 4-Quadrant Brand Mark */}
+              <div className="w-11 h-11 shrink-0 rounded-xl bg-white border border-slate-200 dark:border-neutral-700 overflow-hidden p-1 shadow-sm relative group">
+                <img src="/logo.png" alt="Steve's Handyman Services" className="w-full h-full object-contain" />
               </div>
               <div className="min-w-0 flex-1">
                 <span className="font-heading font-black text-sm tracking-tight text-slate-900 dark:text-white block leading-tight truncate" title={BUSINESS_INFO.name}>
@@ -346,8 +345,8 @@ export default function AdminLayout({ user, darkMode, onToggleDarkMode, onLogout
 
             {/* Admin Profile Card */}
             <div className="flex items-center space-x-3 pl-2 border-l border-slate-200 dark:border-neutral-800">
-              <div className="w-10 h-10 rounded-2xl bg-slate-900 dark:bg-neutral-800 border border-white/10 text-white font-black text-xs flex items-center justify-center shadow-sm">
-                SM
+              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 dark:border-neutral-700 overflow-hidden p-0.5 shadow-sm shrink-0">
+                <img src="/logo.png" alt={BUSINESS_INFO.owner.name} className="w-full h-full object-contain" />
               </div>
               <div className="hidden sm:block text-left">
                 <h4 className="text-xs font-black text-slate-900 dark:text-white leading-tight">

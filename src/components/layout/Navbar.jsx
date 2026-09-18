@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BUSINESS_INFO, isOpenNow } from '../../data/businessData';
+import { BUSINESS_INFO } from '../../data/businessData';
 
 export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate, darkMode, onToggleDarkMode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const openStatus = isOpenNow();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -47,75 +46,127 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
 
   return (
     <>
+      {/* Top Brand Announcement Banner (Warm Espresso Brown from Image 2) */}
+      <div className="bg-[#3d2616] text-[#faf6f0] text-xs font-semibold py-2 px-4 text-center border-b border-white/10 shadow-xs relative z-50">
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#ea580c] text-white text-[10px] font-black uppercase tracking-wider">
+            30+ Years Exp
+          </span>
+          <span className="font-serif italic text-amber-200">
+            “We do it right or not at all.”
+          </span>
+          <span className="hidden md:inline text-white/40">•</span>
+          <span className="hidden sm:inline text-white/90">
+            Specializing in Deck Repair, Trim Carpentry & All Handyman Phases
+          </span>
+          <span className="hidden md:inline text-white/40">•</span>
+          <a
+            href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}
+            className="text-amber-300 hover:text-white font-bold underline transition"
+          >
+            Call: {BUSINESS_INFO.phone}
+          </a>
+        </div>
+      </div>
+
       <header 
         className={`sticky top-0 z-40 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-[#eaebed]/90 dark:bg-[#0b0d10]/90 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-sm py-3.5' 
-            : 'bg-transparent py-5 sm:py-6'
+            ? 'bg-[#f6f0e6]/95 dark:bg-[#15100c]/95 backdrop-blur-xl border-b border-[#e8decb] dark:border-[#38271a] shadow-sm py-3' 
+            : 'bg-[#f6f0e6]/70 dark:bg-[#15100c]/70 backdrop-blur-md border-b border-[#e8decb]/60 dark:border-[#38271a]/50 py-4 sm:py-5'
         }`}
         role="banner"
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
           
-          {/* LEFT: Minimalist Apple-style Brand Mark */}
+          {/* LEFT: Official 4-Quadrant Brand Logo */}
           <button 
             onClick={(e) => handleNavClick(e, '#')}
-            className="flex items-center gap-3 group cursor-pointer text-left"
-            aria-label="Steve's Handyman Home"
+            className="flex items-center gap-3.5 group cursor-pointer text-left"
+            aria-label="Steve's Handyman Services Home"
           >
-            <div className="w-8 h-8 rounded-full bg-neutral-950 dark:bg-white flex items-center justify-center text-white dark:text-neutral-950 font-black text-xs shadow-xs transition-transform duration-300 group-hover:scale-105">
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-              </svg>
+            {/* 4-Quadrant Logo Image */}
+            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden shadow-sm border border-[#3d2616]/15 bg-white p-0.5 transition-transform duration-300 group-hover:scale-105 shrink-0">
+              <img 
+                src="/logo.png" 
+                alt="Steve's Handyman Services Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
+
             <div className="flex flex-col">
-              <span className="font-heading font-extrabold text-sm sm:text-base text-neutral-900 dark:text-white tracking-tight leading-none">
-                Steve's
-              </span>
-              <span className="text-[10px] font-medium tracking-wider text-neutral-500 dark:text-neutral-400 uppercase leading-none mt-0.5">
-                Handyman Co.
-              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="font-heading font-black text-base sm:text-lg text-[#2b1a0e] dark:text-white tracking-tight leading-none">
+                  Steve's Handyman
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <span className="text-[11px] font-black tracking-widest text-[#7a4522] dark:text-amber-400 uppercase leading-none font-heading">
+                  SERVICES
+                </span>
+                <span className="text-[9px] text-[#8b5a2b] dark:text-neutral-400 font-serif italic hidden sm:inline leading-none">
+                  “We do it right or not at all”
+                </span>
+              </div>
             </div>
           </button>
 
-          {/* CENTER/RIGHT: Minimal Text Nav Links EXACT to Template (Products, Prices, Overview, Contacts) */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-11 text-xs sm:text-[13px] font-normal text-neutral-600 dark:text-neutral-400 tracking-normal">
+          {/* CENTER: Navigation Links (Styled with the Brown "HOME" Pill from Image 2) */}
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-xs sm:text-[13px] tracking-normal font-semibold">
+            {/* Active Pill matching Image 2 */}
             <button
-              onClick={(e) => handleNavClick(e, 'services')}
-              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+              onClick={(e) => handleNavClick(e, '#')}
+              className="bg-[#3d2616] text-white px-4 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-xs hover:bg-[#2b1a0e] transition cursor-pointer"
             >
-              Products
+              HOME
             </button>
-            <button
-              onClick={() => onOpenWizard()}
-              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
-            >
-              Prices
-            </button>
+
             <button
               onClick={(e) => handleNavClick(e, '#epiphany')}
-              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+              className="text-[#5c3826] hover:text-[#2b1a0e] dark:text-neutral-300 dark:hover:text-white px-2 py-1 transition-colors cursor-pointer uppercase tracking-wider text-xs font-bold"
             >
-              Overview
+              ABOUT
             </button>
+
+            <button
+              onClick={(e) => handleNavClick(e, 'services')}
+              className="text-[#5c3826] hover:text-[#2b1a0e] dark:text-neutral-300 dark:hover:text-white px-2 py-1 transition-colors cursor-pointer uppercase tracking-wider text-xs font-bold"
+            >
+              SERVICES
+            </button>
+
+            <button
+              onClick={() => onOpenWizard()}
+              className="text-[#5c3826] hover:text-[#2b1a0e] dark:text-neutral-300 dark:hover:text-white px-2 py-1 transition-colors cursor-pointer uppercase tracking-wider text-xs font-bold"
+            >
+              PRICES / FAQ
+            </button>
+
+            <button
+              onClick={(e) => handleNavClick(e, '#experience')}
+              className="text-[#5c3826] hover:text-[#2b1a0e] dark:text-neutral-300 dark:hover:text-white px-2 py-1 transition-colors cursor-pointer uppercase tracking-wider text-xs font-bold"
+            >
+              PROJECTS
+            </button>
+
             <button
               onClick={(e) => handleNavClick(e, '#contacts')}
-              className="hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer"
+              className="text-[#5c3826] hover:text-[#2b1a0e] dark:text-neutral-300 dark:hover:text-white px-2 py-1 transition-colors cursor-pointer uppercase tracking-wider text-xs font-bold"
             >
-              Contacts
+              CONTACT
             </button>
           </nav>
 
-          {/* RIGHT: Theme Toggle & Apple Pill CTA */}
+          {/* RIGHT: Theme Toggle & Brown Pill CTA */}
           <div className="flex items-center gap-3">
             <button
               onClick={onToggleDarkMode}
-              className="w-9 h-9 rounded-full flex items-center justify-center bg-white/70 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 text-neutral-700 dark:text-neutral-300 border border-black/5 dark:border-white/15 transition-all shadow-xs cursor-pointer active:scale-95"
+              className="w-9 h-9 rounded-full flex items-center justify-center bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 text-[#3d2616] dark:text-neutral-300 border border-[#3d2616]/10 dark:border-white/15 transition-all shadow-xs cursor-pointer active:scale-95"
               aria-label="Toggle theme"
               title="Toggle theme"
             >
               {darkMode ? (
-                <svg className="w-4 h-4 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="5" />
                   <line x1="12" y1="1" x2="12" y2="3" />
                   <line x1="12" y1="21" x2="12" y2="23" />
@@ -127,7 +178,7 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                 </svg>
               ) : (
-                <svg className="w-4 h-4 text-neutral-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-4 h-4 text-[#3d2616]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                 </svg>
               )}
@@ -135,17 +186,18 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
 
             <button
               onClick={() => onOpenWizard()}
-              className="btn-apple-pill hidden sm:inline-flex text-xs py-2.5 px-6 shadow-xs cursor-pointer"
+              className="btn-wood-pill hidden sm:inline-flex text-xs py-2 px-5 shadow-xs cursor-pointer"
             >
-              <span>Get Estimate</span>
+              <span>Get Fast Quote ↗</span>
             </button>
 
+            {/* Mobile Hamburger */}
             <button
               onClick={() => setDrawerOpen(true)}
-              className="md:hidden p-2 rounded-full bg-white/70 dark:bg-white/10 text-neutral-800 dark:text-white border border-black/5 dark:border-white/10 cursor-pointer"
+              className="md:hidden p-2 rounded-xl bg-white/80 dark:bg-white/10 text-[#3d2616] dark:text-white border border-[#3d2616]/10 dark:border-white/10 cursor-pointer"
               aria-label="Open menu"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="3" y1="12" x2="21" y2="12" />
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <line x1="3" y1="18" x2="21" y2="18" />
@@ -156,30 +208,37 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
         </div>
       </header>
 
-      {/* Slide-out Tactile Drawer when MENU is clicked */}
+      {/* Slide-out Tactile Drawer */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 flex">
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
+            className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity"
             onClick={() => setDrawerOpen(false)}
           />
 
           {/* Drawer Content */}
-          <div className="relative w-full max-w-md bg-white dark:bg-onyx-950 border-r border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-6 sm:p-8 flex flex-col justify-between overflow-y-auto z-10 shadow-2xl">
+          <div className="relative w-full max-w-md bg-[#f6f0e6] dark:bg-[#140d08] border-r border-[#e8decb] dark:border-[#38271a] text-[#2b1a0e] dark:text-white p-6 sm:p-8 flex flex-col justify-between overflow-y-auto z-10 shadow-2xl">
             <div>
-              <div className="flex items-center justify-between pb-6 border-b border-neutral-200 dark:border-neutral-800">
+              <div className="flex items-center justify-between pb-6 border-b border-[#e8decb] dark:border-[#38271a]">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-neutral-900 dark:bg-white/10 border border-neutral-900 dark:border-white/20 text-white flex items-center justify-center font-black text-xs">
-                    SH
+                  <img 
+                    src="/logo.png" 
+                    alt="Steve's Handyman Services" 
+                    className="w-10 h-10 object-contain rounded-lg border border-black/10 bg-white"
+                  />
+                  <div>
+                    <span className="font-heading font-black text-base text-[#2b1a0e] dark:text-white block">
+                      Steve's Handyman
+                    </span>
+                    <span className="text-[10px] font-bold text-[#7a4522] dark:text-amber-400 uppercase block">
+                      Services • 30+ Years Exp
+                    </span>
                   </div>
-                  <span className="font-heading font-black text-sm tracking-wider uppercase text-neutral-900 dark:text-neutral-300">
-                    Steve's Handyman LLC
-                  </span>
                 </div>
                 <button 
                   onClick={() => setDrawerOpen(false)}
-                  className="p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-white/10 dark:hover:bg-white/20 text-neutral-700 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition cursor-pointer"
+                  className="p-2 rounded-full bg-white/80 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 transition cursor-pointer"
                   aria-label="Close menu"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -190,58 +249,57 @@ export default function Navbar({ onOpenWizard, currentPage = 'home', onNavigate,
               </div>
 
               {/* Navigation Links */}
-              <nav className="mt-8 space-y-3">
+              <nav className="mt-6 space-y-2">
                 {[
+                  { name: 'Home Page', target: '#' },
+                  { name: 'About & 30+ Years Craftsmanship', target: '#epiphany' },
                   { name: 'All Services Catalog', target: 'services' },
-                  { name: '📸 Real Project Gallery', target: '#gallery' },
-                  { name: 'Craftsmanship & Story', target: '#about' },
-                  { name: 'Warranties & Perks', target: '#amenities' },
-                  { name: 'Verified Customer Reviews', target: '#reviews' },
-                  { name: 'Service Area & Hours', target: '#location' },
-                  { name: '🔐 Steve\'s Admin Portal', target: 'admin' },
+                  { name: 'Recent Projects & Photos', target: '#experience' },
+                  { name: 'Service Area & Map', target: '#contacts' },
+                  { name: '🔐 Steve\'s Dispatch Portal', target: 'admin' },
                 ].map((item) => (
                   <button
                     key={item.name}
                     onClick={(e) => handleNavClick(e, item.target)}
-                    className="w-full text-left py-3 px-4 rounded-xl hover:bg-neutral-100 dark:hover:bg-white/5 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 transition flex items-center justify-between group cursor-pointer"
+                    className="w-full text-left py-3 px-4 rounded-xl hover:bg-white/80 dark:hover:bg-white/5 border border-transparent hover:border-[#e8decb] dark:hover:border-neutral-800 transition flex items-center justify-between group cursor-pointer"
                   >
-                    <span className="font-heading font-bold text-base sm:text-lg text-neutral-800 dark:text-neutral-200 group-hover:text-neutral-950 dark:group-hover:text-white group-hover:translate-x-1 transition-transform">
+                    <span className="font-heading font-bold text-sm sm:text-base text-[#2b1a0e] dark:text-neutral-200 group-hover:translate-x-1 transition-transform">
                       {item.name}
                     </span>
-                    <svg className="w-4 h-4 text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg className="w-4 h-4 text-[#7a4522] group-hover:text-[#2b1a0e] dark:group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="9 18 15 12 9 6" />
                     </svg>
                   </button>
                 ))}
               </nav>
 
-              {/* Direct Phone & Service Area Pill */}
-              <div className="mt-8 p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-900/90 border border-neutral-200 dark:border-neutral-800 space-y-3">
-                <span className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400 font-bold block">
-                  Direct Phone / Dispatch
+              {/* Direct Phone & Quote Info */}
+              <div className="mt-8 p-5 rounded-2xl bg-[#ede4d8] dark:bg-[#23150d] border border-[#d8c8b0] dark:border-[#38271a] space-y-2">
+                <span className="text-[10px] uppercase tracking-widest text-[#7a4522] dark:text-amber-400 font-bold block">
+                  Direct Dispatch • Steve Kornblatt
                 </span>
                 <a 
                   href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}
-                  className="font-heading font-black text-2xl text-neutral-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition flex items-center gap-2"
+                  className="font-heading font-black text-2xl text-[#2b1a0e] dark:text-white hover:text-[#7a4522] transition block"
                 >
-                  <span>{BUSINESS_INFO.phone}</span>
+                  {BUSINESS_INFO.phone}
                 </a>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Serving Denison, Sherman, Pottsboro, Lake Texoma, and all of Grayson County, TX.
+                <p className="text-xs text-[#5c3826] dark:text-neutral-400 leading-relaxed font-serif italic">
+                  “We do it right or not at all.”
                 </p>
               </div>
             </div>
 
             {/* Drawer Bottom CTA */}
-            <div className="pt-6 border-t border-neutral-800">
+            <div className="pt-6 border-t border-[#e8decb] dark:border-[#38271a]">
               <button
                 onClick={() => {
                   setDrawerOpen(false);
                   onOpenWizard();
                 }}
-                className="w-full py-4 rounded-xl bg-white text-black font-heading font-black text-base uppercase tracking-wider hover:bg-neutral-200 transition shadow-xl flex items-center justify-center gap-2 active:scale-95"
+                className="w-full py-3.5 rounded-xl bg-[#3d2616] text-white font-heading font-bold text-sm uppercase tracking-wider hover:bg-[#2b1a0e] transition shadow-md flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
               >
-                <span>Request Fast Estimate</span>
+                <span>Request Free Estimate</span>
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="7" y1="17" x2="17" y2="7" />
                   <polyline points="7 7 17 7 17 17" />

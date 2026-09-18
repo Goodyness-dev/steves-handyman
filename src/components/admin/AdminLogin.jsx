@@ -52,9 +52,8 @@ export default function AdminLogin({ onLoginSuccess, onBackToSite }) {
       <div className="w-full max-w-md card-thick rounded-3xl p-8 sm:p-10 bg-white dark:bg-[#0d1017] border border-slate-200/90 dark:border-neutral-800 shadow-xl relative z-10">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black text-xl mb-4 shadow-md relative">
-            <span>S</span>
-            <span className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-950" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-slate-200 dark:border-neutral-700 p-1.5 mb-4 shadow-md">
+            <img src="/logo.png" alt="Steve's Handyman Services" className="w-full h-full object-contain" />
           </div>
           
           <h1 className="text-2xl font-black font-heading tracking-tight text-slate-900 dark:text-white">

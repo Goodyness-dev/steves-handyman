@@ -26,14 +26,14 @@ export default function AllServicesPage({ onOpenWizard, onBackToHome }) {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-onyx-950 text-neutral-900 dark:text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 pb-32 blueprint-grid transition-colors duration-200">
+    <div className="min-h-screen bg-[#f6f0e6] dark:bg-[#140d08] text-neutral-900 dark:text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 pb-32 blueprint-grid transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         
         {/* Top Return Bar */}
-        <div className="flex items-center justify-between pb-6 border-b border-neutral-200 dark:border-neutral-800 mb-12">
+        <div className="flex items-center justify-between pb-6 border-b border-[#e8decb] dark:border-neutral-800 mb-12">
           <button
             onClick={onBackToHome}
-            className="inline-flex items-center space-x-2 text-neutral-800 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white bg-white dark:bg-white/5 hover:bg-neutral-100 dark:hover:bg-white/10 border border-neutral-300 dark:border-neutral-800 px-5 py-2.5 rounded-full text-xs sm:text-sm font-heading font-bold uppercase tracking-wider transition active:scale-95 cursor-pointer shadow-xs"
+            className="inline-flex items-center space-x-2 text-[#3d2616] dark:text-neutral-300 hover:text-black dark:hover:text-white bg-white dark:bg-white/5 hover:bg-neutral-100 dark:hover:bg-white/10 border border-[#d8c8b0] dark:border-neutral-800 px-5 py-2.5 rounded-full text-xs sm:text-sm font-heading font-bold uppercase tracking-wider transition active:scale-95 cursor-pointer shadow-xs"
             aria-label="Back to Homepage"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -44,10 +44,10 @@ export default function AllServicesPage({ onOpenWizard, onBackToHome }) {
           </button>
 
           <div className="flex items-center space-x-3 text-xs sm:text-sm">
-            <span className="text-neutral-500 hidden sm:inline">Questions or Urgent Repair?</span>
+            <span className="text-[#5c3826] dark:text-neutral-400 hidden sm:inline">Questions or Urgent Repair?</span>
             <a
               href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}
-              className="text-neutral-950 dark:text-white font-bold hover:text-emerald-600 dark:hover:text-emerald-400 flex items-center space-x-2 transition"
+              className="text-[#3d2616] dark:text-white font-bold hover:underline flex items-center space-x-2 transition"
             >
               <span>Call Steve: {BUSINESS_INFO.phone}</span>
             </a>
@@ -56,13 +56,13 @@ export default function AllServicesPage({ onOpenWizard, onBackToHome }) {
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 text-xs font-semibold uppercase tracking-wider">
-            <span>Complete Trade Catalog</span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#ede4d8] dark:bg-white/5 border border-[#d8c8b0] dark:border-white/10 text-[#5c3826] dark:text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <span>Complete Trade Catalog • 30+ Years Exp</span>
           </div>
-          <h1 className="text-3xl sm:text-6xl font-black font-heading text-neutral-950 dark:text-white tracking-tight">
+          <h1 className="text-3xl sm:text-6xl font-black font-heading text-[#2b1a0e] dark:text-white tracking-tight">
             Handyman & Contractor Services
           </h1>
-          <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5c3826] dark:text-neutral-400 text-base sm:text-lg leading-relaxed">
             Browse our full catalog of residential repair, carpentry, painting, plumbing fixtures, and punch-list solutions across Denison & Grayson County.
           </p>
 
@@ -73,7 +73,7 @@ export default function AllServicesPage({ onOpenWizard, onBackToHome }) {
               placeholder="Search e.g. drywall, ceiling fan, deck, faucet, doors..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full py-4 pl-12 pr-6 rounded-full bg-white dark:bg-neutral-900 border-2 border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition shadow-sm text-sm"
+              className="w-full py-4 pl-12 pr-6 rounded-full bg-white dark:bg-neutral-900 border-2 border-[#d8c8b0] dark:border-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:border-[#3d2616] dark:focus:border-white transition shadow-sm text-sm"
             />
             <svg className="w-5 h-5 text-neutral-400 absolute left-4.5 top-1/2 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="8" />
@@ -90,8 +90,8 @@ export default function AllServicesPage({ onOpenWizard, onBackToHome }) {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-neutral-950 text-white dark:bg-white dark:text-black shadow-md scale-105'
-                  : 'bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-400 border border-neutral-300 dark:border-neutral-800 hover:border-neutral-400'
+                  ? 'bg-[#3d2616] text-white shadow-md scale-105'
+                  : 'bg-white dark:bg-neutral-900 text-[#5c3826] dark:text-neutral-400 border border-[#d8c8b0] dark:border-neutral-800 hover:border-[#3d2616]'
               }`}
             >
               {cat}
